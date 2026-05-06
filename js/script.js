@@ -678,6 +678,8 @@
   ]);
 });
 
+
+
 // Select elements
 const navExpenses = document.getElementById('navExpenses');
 const navSummary = document.getElementById('navSummary');
@@ -758,7 +760,7 @@ function createDebtItem(debtor, creditor, amount) {
 // Collect all unique member names
 function collectMemberNames() {
     const memberNames = [];
-    
+
     // Collect from member name inputs (1 to currentMemberCount)
     for (let i = 1; i <= currentMemberCount; i++) {
         const memberInput = document.getElementById(`memberName${i}`);
@@ -766,16 +768,16 @@ function collectMemberNames() {
             memberNames.push(memberInput.value.trim());
         }
     }
-    
-    // Collect from paid by fields (avoid duplicates)
-    for (let i = 1; i <= 4; i++) {
-        const name = expenseForm[`paidBy${i}`]?.value.trim();
-        const type = expenseForm[`description${i}`]?.value;
-        if (name && type && !memberNames.includes(name)) {
+
+    // Collect from paidBy fields dynamically
+    const paidByInputs = expenseForm.querySelectorAll('[name^="paidBy"]');
+    paidByInputs.forEach(input => {
+        const name = input.value.trim();
+        if (name && !memberNames.includes(name)) {
             memberNames.push(name);
         }
-    }
-    
+    });
+
     return memberNames;
 }
 
@@ -783,7 +785,13 @@ function collectMemberNames() {
 function handleExpenseSubmit(e) {
     e.preventDefault();
 
-    const totalAmount = parseFloat(expenseForm.totalAmount.value);
+    const totalAmountInput = expenseForm.totalAmount;
+    if (!totalAmountInput) {
+        alert('Missing total amount field in form.');
+        return;
+    }
+
+    const totalAmount = parseFloat(totalAmountInput.value);
     if (isNaN(totalAmount) || totalAmount <= 0) {
         alert('Please enter a valid total expense amount.');
         return;
@@ -815,7 +823,7 @@ function handleExpenseSubmit(e) {
 
     // Clear and populate debt list with demo data
     debtList.innerHTML = '';
-    
+
     if (memberNames.length >= 2) {
         debtList.appendChild(createDebtItem(memberNames[0], memberNames[1], 500));
     }
@@ -841,7 +849,7 @@ navSummary.addEventListener('click', (e) => {
     showSummaryPage();
 });
 
-// Single form submit handler (removed duplicate)
+// Single form submit handler
 expenseForm.addEventListener('submit', handleExpenseSubmit);
 
 // Initialize app - show expenses page by default
