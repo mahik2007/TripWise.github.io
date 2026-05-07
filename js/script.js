@@ -676,6 +676,8 @@
       t.default = n;
     },
   ]);
+  // Navigate to add-expense.html
+    window.location.href = 'add-expense.html';
 });
 
 
