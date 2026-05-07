@@ -658,7 +658,7 @@
           ((t += e.offsetLeft - ("BODY" != e.tagName ? e.scrollLeft : 0)),
             (n += e.offsetTop - ("BODY" != e.tagName ? e.scrollTop : 0)),
             (e = e.offsetParent));
-        return { top: n, left: t };
+        return { top: n, left: t };  
       };
       t.default = n;
     },
@@ -679,17 +679,18 @@
 });
 
 
-
 // Select elements
 const navExpenses = document.getElementById('navExpenses');
 const navSummary = document.getElementById('navSummary');
 const expensesPage = document.getElementById('expensesPage');
 const summaryPage = document.getElementById('summaryPage');
 const expenseForm = document.getElementById('expenseForm');
+
 const totalExpenseElem = document.getElementById('totalExpense');
 const membersCountElem = document.getElementById('membersCount');
 const perPersonAmountElem = document.getElementById('perPersonAmount');
 const debtList = document.getElementById('debtList');
+const memberNamesContainer = document.getElementById('memberNamesContainer');
 
 const expenseTypes = [
     'Select Expense Type',
@@ -704,12 +705,51 @@ const expenseTypes = [
     '🎢Activities / Adventures',
     '💊Emergency / Medical',
     '📦Other'
-  ];
+];
 
-// Global variable to track current member count
-let currentMemberCount = 1;
+// Load trip data and generate member inputs on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const tripData = JSON.parse(localStorage.getItem('tripData') || '{}');
+    const numMembers = parseInt(tripData.members) || 0;
+    
+    if (numMembers > 0) {
+        generateMemberInputs(numMembers);
+    }
+});
 
-// Page navigation functions
+function generateMemberInputs(numMembers) {
+    memberNamesContainer.innerHTML = ''; // Clear existing inputs
+    
+    for (let i = 1; i <= numMembers; i++) {
+        const memberDiv = document.createElement('div');
+        memberDiv.className = 'member-input-group';
+        memberDiv.style.marginBottom = '12px';
+        
+        const label = document.createElement('label');
+        label.textContent = `Member Name ${i}:`;
+        label.style.fontWeight = '600';
+        label.style.marginBottom = '4px';
+        label.style.display = 'block';
+        
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = `member${i}`;
+        input.id = `member${i}`;
+        input.placeholder = `Enter name of member ${i}`;
+        input.className = 'form-input member-name';
+        input.required = true;
+        input.style.width = '100%';
+        input.style.padding = '10px';
+        input.style.border = '1px solid #ddd';
+        input.style.borderRadius = '6px';
+        
+        memberDiv.appendChild(label);
+        memberDiv.appendChild(input);
+        memberNamesContainer.appendChild(memberDiv);
+    }
+}
+
+// Show Expenses page by default
 function showExpensesPage() {
     expensesPage.style.display = 'block';
     summaryPage.style.display = 'none';
@@ -724,99 +764,91 @@ function showSummaryPage() {
     navSummary.classList.add('active');
 }
 
-// Create debt item element
-function createDebtItem(debtor, creditor, amount) {
-    const div = document.createElement('div');
-    div.className = 'debt-item';
-
-    // Account icon SVG
-    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    icon.setAttribute('aria-hidden', 'true');
-    icon.setAttribute('focusable', 'false');
-    icon.setAttribute('width', '24');
-    icon.setAttribute('height', '24');
-    icon.setAttribute('viewBox', '0 0 24 24');
-    icon.setAttribute('fill', '#000');
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', 'M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zM2 20v-2c0-2.21 3.58-4 8-4s8 1.79 8 4v2H2z');
-    icon.appendChild(path);
-
-    const textSpan = document.createElement('span');
-    textSpan.className = 'debt-text';
-    textSpan.textContent = `${debtor} owes ${creditor}`;
-
-    const amountSpan = document.createElement('span');
-    amountSpan.className = 'debt-amount';
-    amountSpan.textContent = `₹${amount}`;
-
-    div.appendChild(icon);
-    div.appendChild(textSpan);
-    div.appendChild(amountSpan);
-
-    return div;
-}
-
-// Collect all unique member names
-function collectMemberNames() {
-    const memberNames = [];
-
-    // Collect from member name inputs (1 to currentMemberCount)
-    for (let i = 1; i <= currentMemberCount; i++) {
-        const memberInput = document.getElementById(`memberName${i}`);
-        if (memberInput && memberInput.value.trim() !== '') {
-            memberNames.push(memberInput.value.trim());
-        }
-    }
-
-    // Collect from paidBy fields dynamically
-    const paidByInputs = expenseForm.querySelectorAll('[name^="paidBy"]');
-    paidByInputs.forEach(input => {
-        const name = input.value.trim();
-        if (name && !memberNames.includes(name)) {
-            memberNames.push(name);
-        }
-    });
-
-    return memberNames;
-}
-
-// Main expense form submit handler
-function handleExpenseSubmit(e) {
+// Navigation event handlers
+navExpenses.addEventListener('click', (e) => {
     e.preventDefault();
+    showExpensesPage();
+});
 
-    const totalAmountInput = expenseForm.totalAmount;
-    if (!totalAmountInput) {
-        alert('Missing total amount field in form.');
-        return;
-    }
+navSummary.addEventListener('click', (e) => {
+    e.preventDefault();
+    showSummaryPage();
+});
 
-    const totalAmount = parseFloat(totalAmountInput.value);
+// Expense form submit handler
+expenseForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const totalAmount = parseFloat(expenseForm.totalAmount.value);
     if (isNaN(totalAmount) || totalAmount <= 0) {
         alert('Please enter a valid total expense amount.');
         return;
     }
 
-    // Validate all member name inputs
-    for (let i = 1; i <= currentMemberCount; i++) {
-        const memberInput = document.getElementById(`memberName${i}`);
-        if (memberInput && memberInput.value.trim() === '') {
-            alert(`Please enter a name for Member Name ${i}`);
-            return;
+    // Collect member names from dynamically generated member inputs
+    const memberNames = [];
+    const memberInputs = document.querySelectorAll('.member-name');
+    
+    memberInputs.forEach((input) => {
+        const name = input.value.trim();
+        if (name) {
+            memberNames.push(name);
         }
+    });
+
+    if (memberNames.length === 0) {
+        alert('Please enter at least one member name.');
+        return;
     }
 
-    // Collect all unique member names
-    const memberNames = collectMemberNames();
-    if (memberNames.length === 0) {
-        alert('Please add at least one member.');
-        return;
+    // Collect paid by data (avoid empty)
+    const paidBy = [];
+    for (let i = 1; i <= 4; i++) {
+        const name = expenseForm[`paidBy${i}`]?.value?.trim();
+        const type = expenseForm[`description${i}`]?.value;
+        if (name && type) {
+            paidBy.push({ name, type });
+        }
     }
 
     // Calculate per person expense
     const perPerson = totalAmount / memberNames.length;
 
-    // Update summary page elements
+    // Simple debt calculation logic
+    const payments = {};
+    memberNames.forEach(name => payments[name] = 0);
+
+    // Add payments from paidBy fields
+    paidBy.forEach(({ name }) => {
+        if (memberNames.includes(name)) {
+            payments[name] += totalAmount / paidBy.length;
+        }
+    });
+
+    // Clear existing debts
+    debtList.innerHTML = '';
+
+    // Generate debt list
+    memberNames.forEach((member) => {
+        const shouldPay = perPerson;
+        const paid = payments[member] || 0;
+        const difference = paid - shouldPay;
+        
+        if (Math.abs(difference) > 0.01) {
+            if (difference > 0) {
+                // This member is creditor (paid more)
+                memberNames.forEach(otherMember => {
+                    if (otherMember !== member && payments[otherMember] < perPerson) {
+                        const debtAmount = Math.min(difference, perPerson - payments[otherMember]);
+                        if (debtAmount > 0.01) {
+                            debtList.appendChild(createDebtItem(otherMember, member, debtAmount));
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+    // Update summary display
     totalExpenseElem.textContent = `₹${totalAmount.toFixed(2)}`;
     membersCountElem.textContent = memberNames.length;
     perPersonAmountElem.textContent = `₹${perPerson.toFixed(2)}`;
@@ -836,21 +868,35 @@ function handleExpenseSubmit(e) {
 
     // Switch to summary page
     showSummaryPage();
+});
+
+function createDebtItem(debtor, creditor, amount) {
+    const div = document.createElement('div');
+    div.className = 'debt-item';
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.setAttribute('focusable', 'false');
+    icon.setAttribute('width', '24');
+    icon.setAttribute('height', '24');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('fill', '#000');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zM2 20v-2c0-2.21 3.58-4 8-4s8 1.79 8 4v2H2z');
+    icon.appendChild(path);
+
+    const textSpan = document.createElement('span');
+    textSpan.className = 'debt-text';
+    textSpan.textContent = `${debtor} owes ${creditor}`;
+
+    const amountSpan = document.createElement('span');
+    amountSpan.className = 'debt-amount';
+    amountSpan.textContent = `₹${amount.toFixed(2)}`;
+
+    div.appendChild(icon);
+    div.appendChild(textSpan);
+    div.appendChild(amountSpan);
+
+    return div;
 }
-
-// Navigation event handlers
-navExpenses.addEventListener('click', (e) => {
-    e.preventDefault();
-    showExpensesPage();
-});
-
-navSummary.addEventListener('click', (e) => {
-    e.preventDefault();
-    showSummaryPage();
-});
-
-// Single form submit handler
-expenseForm.addEventListener('submit', handleExpenseSubmit);
-
-// Initialize app - show expenses page by default
-showExpensesPage();
