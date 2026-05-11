@@ -1,4 +1,5 @@
 # TripWise – Split Your Expenses Wisely
+![alt text](image-1.png)
 
 TripWise is a web-based application designed to help users manage and split group travel expenses easily. It simplifies the process of tracking expenses and ensures transparency among all members during a trip.
 
