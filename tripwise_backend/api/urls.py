@@ -8,4 +8,5 @@ urlpatterns = [
     path('add-expense/', views.add_expense),
     path('balances/<int:group_id>/', views.balances),
     path('settle/<int:group_id>/', views.settle_up),
+    path('chatbot/', views.chatbot),
 ]

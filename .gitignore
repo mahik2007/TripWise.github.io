@@ -1,1 +1,8 @@
 .env
+.venv/
+__pycache__/
+*.pyc
+tripwise_backend/tripwise_backend/__pycache__/
+tripwise_backend/api/__pycache__/
+ai_chatbot/__pycache__/
+tripwise_backend/db.sqlite3

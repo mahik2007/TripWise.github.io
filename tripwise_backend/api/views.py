@@ -120,3 +120,24 @@ def settle_up(request, group_id):
             j += 1
 
     return Response(transactions)
+# ─── AI CHATBOT VIEW ───────────────────────────────────
+import sys
+import os
+
+@api_view(['POST'])
+def chatbot(request):
+    user_message = request.data.get('message', '')
+
+    if not user_message:
+        return Response({"error": "Message cannot be empty"}, status=400)
+
+    chatbot_path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..', '..')
+    )
+    if chatbot_path not in sys.path:
+        sys.path.insert(0, chatbot_path)
+
+    from ai_chatbot.chatbot import get_ai_response
+    reply = get_ai_response(user_message)
+
+    return Response({"reply": reply})
