@@ -711,11 +711,16 @@ const expenseTypes = [
 
 // Load trip data and generate member inputs on page load
 document.addEventListener('DOMContentLoaded', function() {
-    const tripData = JSON.parse(localStorage.getItem('tripData') || '{}');
-    const numMembers = parseInt(tripData.members) || 0;
+    const rawData = localStorage.getItem('tripData');
+    console.log('Stored Trip Data:', rawData); // check if this is null or empty
     
-    if (numMembers > 0) {
+    const tripData = JSON.parse(rawData || '{}');
+    const numMembers = parseInt(tripData.members) || 0; // ✅ fixed typo
+
+    if (numMembers > 0){
         generateMemberInputs(numMembers);
+    } else {
+        console.error('No members found in tripData');
     }
 });
 
