@@ -710,19 +710,34 @@ const expenseTypes = [
 ];
 
 // Load trip data and generate member inputs on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const rawData = localStorage.getItem('tripData');
-    console.log('Stored Trip Data:', rawData); // check if this is null or empty
-    
-    const tripData = JSON.parse(rawData || '{}');
-    const numMembers = parseInt(tripData.members) || 0; // ✅ fixed typo
+const generateBtn = document.getElementById('generateBtn');
 
-    if (numMembers > 0){
-        generateMemberInputs(numMembers);
-    } else {
-        console.error('No members found in tripData');
+generateBtn.addEventListener('click', () => {
+
+    const numMembers = parseInt(
+        document.getElementById('numMembers').value
+    );
+
+    if (isNaN(numMembers) || numMembers <= 0) {
+        alert("Enter valid number of members");
+        return;
     }
-});
+
+    generateMemberInputs(numMembers);
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const rawData = localStorage.getItem('tripData');
+//     console.log('Stored Trip Data:', rawData); // check if this is null or empty
+    
+//     const tripData = JSON.parse(rawData || '{}');
+//     const numMembers = parseInt(tripData.members) || 0; // ✅ fixed typo
+
+//     if (numMembers > 0){
+//         generateMemberInputs(numMembers);
+//     } else {
+//         console.error('No members found in tripData');
+//     }
+// });
 
 function generateMemberInputs(numMembers) {
     memberNamesContainer.innerHTML = ''; // Clear existing inputs
