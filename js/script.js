@@ -770,19 +770,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// const generateBtn = document.getElementById('generateBtn');
-
-// generateBtn.addEventListener('click', () => {
-
-//     const numMembers = parseInt(
-//         document.getElementById('numMembers').value
-//     );
-
-//     if (isNaN(numMembers) || numMembers <= 0) {
-//         alert("Enter valid number of members");
-//         return;
-//     }
-
 //     generateMemberInputs(numMembers);
 
 // document.addEventListener('DOMContentLoaded', function() {
