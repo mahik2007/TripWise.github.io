@@ -677,51 +677,9 @@
     },
   ]);
   // Navigate to add-expense.html
-    // window.location.href = 'add-expense.html';
+    window.location.href = 'add-expense.html';
 });
 
-// Handle adding new destination inputs
-    document.querySelector('.add-destination').addEventListener('click', () => {
-      const container = document.getElementById('destinationContainer');
-      const inputCount = container.querySelectorAll('input.destination').length;
-      const newInput = document.createElement('input');
-      newInput.type = 'text';
-      newInput.name = 'destination' + (inputCount + 1);
-      newInput.id = 'destination' + (inputCount + 1);
-      newInput.placeholder = 'Enter destination';
-      newInput.classList.add('destination');
-      newInput.style.marginTop = '8px';
-      container.appendChild(newInput);
-    });
-
-    // Submit form and navigate to Add Expense page
-    document.getElementById('createTripForm').addEventListener('submit', function(event){
-      event.preventDefault();
-
-      // Simple validation for destinations: at least one filled
-      const destinations = [...document.querySelectorAll('input.destination')].map(i => i.value.trim()).filter(v => v.length > 0);
-      if(destinations.length === 0){
-        alert('Please enter at least one destination.');
-        return;
-      }
-
-      // Save trip data in localStorage for next page usage (optional)
-      const tripData = {
-        destinations: destinations,
-        tripName: this.tripName.value.trim(),
-        startDate: this.startDate.value,
-        endDate: this.endDate.value,
-        duration: this.duration.value.trim(),
-        members: this.members.value.trim(),
-        budget: this.budget.value.trim(),
-        tripType: this.tripType.value,
-        notes: this.notes.value.trim()
-      };
-      localStorage.setItem('tripData', JSON.stringify(tripData));
-
-      // Navigate to add-expense.html
-      window.location.href = 'add-expense.html';
-    });
 
 // Select elements
 const navExpenses = document.getElementById('navExpenses');
