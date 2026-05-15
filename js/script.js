@@ -710,20 +710,24 @@ const expenseTypes = [
 ];
 
 // Load trip data and generate member inputs on page load
-const generateBtn = document.getElementById('generateBtn');
+document.addEventListener('DOMContentLoaded', () => {
 
-generateBtn.addEventListener('click', () => {
-
-    const numMembers = parseInt(
-        document.getElementById('numMembers').value
+    const tripData = JSON.parse(
+        localStorage.getItem('tripData') || '{}'
     );
 
-    if (isNaN(numMembers) || numMembers <= 0) {
-        alert("Enter valid number of members");
-        return;
+    const numMembers =
+        parseInt(tripData.members) || 0;
+
+    if (numMembers > 0) {
+
+        generateMemberInputs(numMembers);
+
     }
 
-    generateMemberInputs(numMembers);
+});
+
+//     generateMemberInputs(numMembers);
 
 // document.addEventListener('DOMContentLoaded', function() {
 //     const rawData = localStorage.getItem('tripData');
