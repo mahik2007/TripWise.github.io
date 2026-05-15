@@ -1,3 +1,4 @@
+
 !(function (e, t) {
   "object" == typeof exports && "object" == typeof module
     ? (module.exports = t())
@@ -680,6 +681,8 @@
     window.location.href = 'add-expense.html';
 });
 
+const API_BASE_URL = "https://tripwise-backend-1.onrender.com";
+
 
 // Select elements
 const navExpenses = document.getElementById('navExpenses');
@@ -710,14 +713,38 @@ const expenseTypes = [
 ];
 
 // Load trip data and generate member inputs on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const tripData = JSON.parse(localStorage.getItem('tripData') || '{}');
-    const numMembers = parseInt(tripData.members) || 0;
-    
+document.addEventListener('DOMContentLoaded', () => {
+
+    const tripData = JSON.parse(
+        localStorage.getItem('tripData') || '{}'
+    );
+
+    const numMembers =
+        parseInt(tripData.members) || 0;
+
     if (numMembers > 0) {
+
         generateMemberInputs(numMembers);
+
     }
+
 });
+
+//     generateMemberInputs(numMembers);
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const rawData = localStorage.getItem('tripData');
+//     console.log('Stored Trip Data:', rawData); // check if this is null or empty
+    
+//     const tripData = JSON.parse(rawData || '{}');
+//     const numMembers = parseInt(tripData.members) || 0; // ✅ fixed typo
+
+//     if (numMembers > 0){
+//         generateMemberInputs(numMembers);
+//     } else {
+//         console.error('No members found in tripData');
+//     }
+// });
 
 function generateMemberInputs(numMembers) {
     memberNamesContainer.innerHTML = ''; // Clear existing inputs
@@ -814,6 +841,25 @@ expenseForm.addEventListener('submit', (e) => {
 
     // Calculate per person expense
     const perPerson = totalAmount / memberNames.length;
+
+
+    fetch(`${API_BASE_URL}/api/add-expense/`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        total_amount: totalAmount,
+        members: memberNames
+    })
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log("Saved:", data);
+    })
+    .catch(error => {
+    console.error("Error:", error);
+    });
 
     // Simple debt calculation logic
     const payments = {};
