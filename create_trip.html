@@ -1,438 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Trip - TripWise</title>
     <link rel="icon" type="image/png" href="image/logo.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Segoe UI', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        body{
-            background:#f3f4f6;
-            color:#111827;
-            overflow-x:hidden;
-            
-    
+        body {
+            background: #f3f4f6;
+            color: #111827;
+            overflow-x: hidden;
+
+
 
         }
 
         /* 🌿 BLUR BACKGROUND */
-body::before, body::after{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    filter:blur(140px);
-    z-index:-2;
-    animation:float 14s infinite alternate ease-in-out;
-}
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -2;
+            animation: float 14s infinite alternate ease-in-out;
+        }
 
-body::before{
-    background:#22c55e;
-    top:80px;
-    left:80px;
-}
+        body::before {
+            background: #22c55e;
+            top: 80px;
+            left: 80px;
+        }
 
-body::after{
-    background:#14532d;
-    bottom:80px;
-    right:80px;
-}
+        body::after {
+            background: #14532d;
+            bottom: 80px;
+            right: 80px;
+        }
 
-@keyframes float{
-    0%{transform:translate(0,0);}
-    100%{transform:translate(80px,-60px);}
-}
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(80px, -60px);
+            }
+        }
 
         /* ✨ FLOATING PARTICLES */
-.particles span{
-    position:fixed;
-    width:6px;
-    height:6px;
-    background:#22c55e;
-    border-radius:50%;
-    opacity:0.4;
-    animation:move 10s linear infinite;
-    z-index:-1;
-}
+        .particles span {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: move 10s linear infinite;
+            z-index: -1;
+        }
 
-@keyframes move{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh);}
-}
+        @keyframes move {
+            from {
+                transform: translateY(100vh);
+            }
+
+            to {
+                transform: translateY(-10vh);
+            }
+        }
 
         /* Navbar */
-        nav{
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            background:#14532d;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:14px 40px;
-            z-index:1000;
-            box-shadow:0 2px 10px rgba(0,0,0,0.2);
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #14532d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 24px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .logo{
-            flex:1;
-            display:flex;
-            align-items:center;
-            gap:12px;
-        }
         .logo {
-    text-decoration: none;
-}
-
-        .logo img{
-            width:60px;
-            height:60px;
-            border-radius:10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .logo-text h1{
-            color:white;
-            font-size:32px;
-            line-height:1;
+        .logo img {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
         }
 
-        .logo-text p{
-            color:#d1d5db;
-            font-size:14px;
-            margin-top:3px;
-        }
-       
-        .nav-links{
-            display:flex;
-            
-             align-items:center;
-             position:absolute;
-             left:55%;   /* 🔥 change from 50% → 55% */
-    transform:translateX(-50%);
-     gap:22px;
-     white-space:nowrap; 
+        .logo-text h1 {
+            color: white;
+            font-size: 24px;
+            line-height: 1;
+            margin: 0;
         }
 
-        .nav-links a{
-            color:white;
-            text-decoration:none;
-            font-size:18px;
+        .logo-text p {
+            color: #d1d5db;
+            font-size: 12px;
+            margin: 0;
         }
 
-        .nav-links a.active{
-            color:#22c55e;
-        }
-        
-        /* NAV ICON ALIGN */
-        .nav-links a{
-            display:flex;
-             align-items:center;
-             gap:6px;
-        }
-        /* NEON EFFECT */
-        .nav-links a:hover,
-         .nav-links a.active{
-    color:#22c55e;
-    text-shadow:0 0 8px #22c55e, 0 0 15px #22c55e;
-}
-
-        .nav-links a:hover,
-        .nav-links a.active{
-            color:#22c55e;
-            text-shadow:0 0 8px #22c55e, 0 0 15px #22c55e;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        /* CONTACT BUTTON */
-        .contact-btn{
-             background:#22c55e;
-             padding:8px 16px;
-            border-radius:20px;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+            padding: 8px 12px;
+            border-radius: 999px;
+        }
 
-        .menu-btn{
-            flex:1;
-    display:flex;
-    justify-content:flex-end;
-            top:22px;
-            right:30px;
-            color:white;
-            font-size:28px;
-            cursor:pointer;
-            z-index:5000;
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: #22c55e;
+            text-shadow: 0 0 8px #22c55e, 0 0 15px #22c55e;
+            transform: translateY(-1px);
+        }
+
+        .contact-btn {
+            background: #22c55e;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .menu-btn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         /* Sidebar */
-        .sidebar{
-            position:fixed;
-            top:88px;
-            right:-250px;
-            width:250px;
-            height:calc(100% - 88px);
-            background:#14532d;
-            transition:0.4s;
-            z-index:2000;
-            border-top:1px solid rgba(255,255,255,0.15);
+        .sidebar {
+            position: fixed;
+            top: 88px;
+            right: -250px;
+            width: 250px;
+            height: calc(100% - 88px);
+            background: #14532d;
+            transition: 0.4s;
+            z-index: 2000;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .sidebar.active{
-            right:0;
+        .sidebar.active {
+            right: 0;
         }
 
-        .sidebar a{
-            display:block;
-            color:white;
-            text-decoration:none;
-            padding:18px 30px;
-            font-size:20px;
-            border-bottom:1px solid rgba(255,255,255,0.1);
-            transition:0.3s;
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
         }
 
-        .sidebar a:hover{
-            background:#22c55e;
+        .sidebar a:hover {
+            background: #22c55e;
         }
 
         /* Main Container */
-        .main{
-            max-width:1000px;
-            margin:130px auto 60px;
-            padding:0 20px;
+        .main {
+            max-width: 1000px;
+            margin: 130px auto 60px;
+            padding: 0 20px;
         }
 
-        .trip-card{
-            background:white;
-            border-radius:22px;
-            padding:40px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        .trip-card {
+            background: white;
+            border-radius: 22px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
-        .trip-card h2{
-            text-align:center;
-            color:#14532d;
-            font-size:38px;
-            margin-bottom:10px;
+        .trip-card h2 {
+            text-align: center;
+            color: #14532d;
+            font-size: 38px;
+            margin-bottom: 10px;
         }
 
-        .trip-card p{
-            text-align:center;
-            color:#4b5563;
-            margin-bottom:35px;
-            font-size:18px;
+        .trip-card p {
+            text-align: center;
+            color: #4b5563;
+            margin-bottom: 35px;
+            font-size: 18px;
         }
 
         /* Progress */
 
-        .progress-container{
-            margin-bottom:40px;
+        .progress-container {
+            margin-bottom: 40px;
         }
 
-        .steps{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            position:relative;
-            margin-bottom:15px;
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 15px;
         }
 
-        .steps::before{
-            content:"";
-            position:absolute;
-            top:20px;
-            left:10%;
-            width:80%;
-            height:4px;
-            background:#d1d5db;
-            z-index:0;
+        .steps::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            width: 80%;
+            height: 4px;
+            background: #d1d5db;
+            z-index: 0;
         }
 
-        .step{
-            position:relative;
-            z-index:1;
-            text-align:center;
-            width:20%;
+        .step {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 20%;
         }
 
-        .step-number{
-            width:42px;
-            height:42px;
-            margin:auto;
-            border-radius:50%;
-            background:#22c55e;
-            color:white;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-weight:700;
-            margin-bottom:10px;
+        .step-number {
+            width: 42px;
+            height: 42px;
+            margin: auto;
+            border-radius: 50%;
+            background: #22c55e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .step p{
-            font-size:14px;
-            color:#374151;
+        .step p {
+            font-size: 14px;
+            color: #374151;
         }
 
         /* Form */
-        .form-section h3{
-            color:#14532d;
-            font-size:28px;
-            margin-bottom:25px;
+        .form-section h3 {
+            color: #14532d;
+            font-size: 28px;
+            margin-bottom: 25px;
         }
 
-        .field{
-            margin-bottom:22px;
+        .field {
+            margin-bottom: 22px;
         }
 
-        .field label{
-            display:block;
-            margin-bottom:8px;
-            font-size:16px;
-            font-weight:600;
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .field input,
         .field select,
-        .field textarea{
-            width:100%;
-            padding:14px 16px;
-            border:1px solid #d1d5db;
-            border-radius:12px;
-            background:#f9fafb;
-            font-size:16px;
+        .field textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            background: #f9fafb;
+            font-size: 16px;
         }
 
         .field input:focus,
         .field select:focus,
-        .field textarea:focus{
-            outline:none;
-            border-color:#22c55e;
-            box-shadow:0 0 0 4px rgba(34,197,94,0.12);
+        .field textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
         }
 
-        .two-fields{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:20px;
+        .two-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .add-destination{
-            color:#22c55e;
-            font-weight:600;
-            text-decoration:none;
-            display:inline-block;
-            margin-top:10px;
+        .add-destination {
+            color: #22c55e;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
         }
 
-        .submit-btn{
-            width:100%;
-            margin-top:25px;
-            padding:16px;
-            background:#22c55e;
-            color:white;
-            border:none;
-            border-radius:12px;
-            font-size:18px;
-            font-weight:600;
-            cursor:pointer;
-            transition:0.3s;
+        .submit-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 16px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .submit-btn:hover{
-            background:#16a34a;
-            transform:translateY(-2px);
+        .submit-btn:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
         }
 
         /* Footer */
-        .footer{
-    background:#14532d;
-    color:white;
-    padding:30px 40px 20px;
-}
+        .footer {
+            background: #14532d;
+            color: white;
+            padding: 30px 40px 20px;
+        }
 
-/* CENTER TEXT */
-.footer-center{
-    text-align:center;
-    margin-bottom:15px;
-}
+        /* CENTER TEXT */
+        .footer-center {
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-.footer-center h2{
-    margin:0;
-    font-size:26px;
-}
+        .footer-center h2 {
+            margin: 0;
+            font-size: 26px;
+        }
 
-.footer-center p{
-    margin-top:5px;
-    color:#d1d5db;
-}
+        .footer-center p {
+            margin-top: 5px;
+            color: #d1d5db;
+        }
 
-/* BOTTOM ROW */
-.footer-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-}
+        /* BOTTOM ROW */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-/* LEFT LINKS */
-.footer-left{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
+        /* LEFT LINKS */
+        .footer-left {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-.footer-left a{
-    color:white;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
+        .footer-left a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-.footer-left a:hover{
-    color:#22c55e;
-}
+        .footer-left a:hover {
+            color: #22c55e;
+        }
 
-/* RIGHT TEXT */
-.footer-right{
-    font-size:14px;
-    color:#d1d5db;
-}
+        /* RIGHT TEXT */
+        .footer-right {
+            font-size: 14px;
+            color: #d1d5db;
+        }
 
-/* MOBILE RESPONSIVE */
-@media(max-width:768px){
-    .footer-bottom{
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-    }
-}
+        /* MOBILE RESPONSIVE */
+        @media(max-width:900px) {
+            .nav-links {
+                display: none;
+            }
 
-   
+            .menu-btn {
+                display: flex;
+            }
 
-        
+            .sidebar {
+                top: 72px;
+                width: 260px;
+                height: calc(100% - 72px);
+            }
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 12px 18px;
+            }
+
+            .logo img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .logo-text p {
+                font-size: 11px;
+            }
+
+            .trip-card {
+                padding: 24px;
+            }
+
+            .trip-card h2 {
+                font-size: 30px;
+            }
+
+            .trip-card p {
+                font-size: 16px;
+            }
+
+            .steps {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+
+            .steps::before {
+                left: 50%;
+                top: 50px;
+                width: 4px;
+                height: calc(100% - 52px);
+                transform: translateX(-50%);
+            }
+
+            .step {
+                width: 100%;
+                text-align: center;
+                padding-bottom: 20px;
+            }
+
+            .step:last-child {
+                padding-bottom: 0;
+            }
+
+            .step p {
+                font-size: 13px;
+            }
+
+            .two-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .field {
+                margin-bottom: 18px;
+            }
+
+            .form-section h3 {
+                font-size: 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        @media(max-width:480px) {
+            nav {
+                padding: 10px 14px;
+            }
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text h1 {
+                font-size: 18px;
+            }
+
+            .nav-links a,
+            .contact-btn {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+
+            .menu-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .trip-card {
+                padding: 20px;
+            }
+
+            .step-number {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+
+            .step p {
+                font-size: 12px;
+            }
+
+            .footer-center h2 {
+                font-size: 22px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="css/responsive.css">
-    
+
 </head>
+
 <body>
 
     <!-- PARTICLES -->
-<div class="particles">
-    <span style="left:10%; animation-delay:0s"></span>
-    <span style="left:30%; animation-delay:2s"></span>
-    <span style="left:50%; animation-delay:4s"></span>
-    <span style="left:70%; animation-delay:1s"></span>
-    <span style="left:90%; animation-delay:3s"></span>
-</div>
+    <div class="particles">
+        <span style="left:10%; animation-delay:0s"></span>
+        <span style="left:30%; animation-delay:2s"></span>
+        <span style="left:50%; animation-delay:4s"></span>
+        <span style="left:70%; animation-delay:1s"></span>
+        <span style="left:90%; animation-delay:3s"></span>
+    </div>
 
     <!-- Navbar -->
     <nav>
@@ -443,31 +567,31 @@ body::after{
                 <p>Split your expenses wisely</p>
             </div>
         </a>
-        
+
 
         <div class="nav-links">
-        <a href="index.html" >
-            <i class="fa-solid fa-house" ></i> Home</a>
-        <a href="create_trip.html" class ="active">
-            <i class="fa-solid fa-plus" ></i> Create Trip</a>
-        <a href="add_expense.html">
-            <i class="fa-solid fa-wallet"></i> Expenses</a>
-        <a href="summary.html">
-            <i class="fa-solid fa-chart-pie"></i> Summary</a>
+            <a href="index.html">
+                <i class="fa-solid fa-house"></i> Home</a>
+            <a href="create_trip.html" class="active">
+                <i class="fa-solid fa-plus"></i> Create Trip</a>
+            <a href="add_expense.html">
+                <i class="fa-solid fa-wallet"></i> Expenses</a>
+            <a href="summary.html">
+                <i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-        <a href="aboutus.html">
-            <i class="fa-solid fa-circle-info"></i> About</a>
+            <a href="aboutus.html">
+                <i class="fa-solid fa-circle-info"></i> About</a>
 
-        <a href="contact.html" class="contact-btn">
-            <i class="fa-solid fa-phone"></i> Contact Us
-        </a>
+            <a href="contact.html" class="contact-btn">
+                <i class="fa-solid fa-phone"></i> Contact Us
+            </a>
 
-        <a href="create_acc.html">
-            <i class="fa-solid fa-circle-user"></i> Profile
-        </a>
-    </div>
+            <a href="create_acc.html">
+                <i class="fa-solid fa-circle-user"></i> Profile
+            </a>
+        </div>
 
-        <div class="menu-btn" onclick="openSidebar()">☰</div>
+        <div class="menu-btn" onclick="openSidebar()"><i class="fa-solid fa-bars"></i></div>
     </nav>
 
     <!-- Sidebar -->
@@ -485,7 +609,7 @@ body::after{
             <h2>Customize Your Tour</h2>
             <p>Plan your trip details and manage your expenses effortlessly.</p>
 
-           
+
             <!-- Progress Steps -->
             <div class="progress-container">
                 <div class="steps">
@@ -585,113 +709,229 @@ body::after{
     </main>
 
     <!-- Footer -->
-   <footer class="footer">
+    <footer class="footer">
 
-    <!-- CENTER TAGLINE -->
-    <div class="footer-center">
-        <h2>TripWise</h2>
-        <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
-    </div>
-<br>
-<br>
-<hr style="border-color:#1c6b3a; margin:20px 0;">
-<br>
-    <!-- BOTTOM ROW -->
-    <div class="footer-bottom">
+        <!-- CENTER TAGLINE -->
+        <div class="footer-center">
+            <h2>TripWise</h2>
+            <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
+        </div>
+        <br>
+        <br>
+        <hr style="border-color:#1c6b3a; margin:20px 0;">
+        <br>
+        <!-- BOTTOM ROW -->
+        <div class="footer-bottom">
 
-        <!-- LEFT -->
-        <div class="footer-left">
-            <a href="aboutus.html">
-                <i class="fa-solid fa-circle-info"></i> About Us
-            </a>
+            <!-- LEFT -->
+            <div class="footer-left">
+                <a href="aboutus.html">
+                    <i class="fa-solid fa-circle-info"></i> About Us
+                </a>
 
-            <a href="contact.html">
-                <i class="fa-solid fa-phone"></i> Contact Us
-            </a>
+                <a href="contact.html">
+                    <i class="fa-solid fa-phone"></i> Contact Us
+                </a>
 
-            <a href="#">
-                <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
-            </a>
+                <a href="#">
+                    <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
+                </a>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="footer-right">
+                © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+            </div>
+
         </div>
 
-        <!-- RIGHT -->
-        <div class="footer-right">
-            © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
-        </div>
-
-    </div>
-
-</footer>
+    </footer>
 
     <script>
-        function openSidebar(){
+        function openSidebar() {
             document.getElementById("sidebar").classList.toggle("active");
         }
     </script>
-<!-- TRIPWISE AI CHAT BUBBLE -->
-<div id="chat-bubble" onclick="toggleChat()">
-    <i class="fa-solid fa-robot"></i>
-</div>
-
-<div id="chat-window">
-    <div id="chat-header">
-        <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
-        <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+    <!-- TRIPWISE AI CHAT BUBBLE -->
+    <div id="chat-bubble" onclick="toggleChat()">
+        <i class="fa-solid fa-robot"></i>
     </div>
-    <div id="chat-messages">
-        <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
-    </div>
-    <div id="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Ask something..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
-</div>
 
-<style>
-#chat-bubble{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;color:white;cursor:pointer;box-shadow:0 4px 20px rgba(34,197,94,0.5);z-index:9999;transition:transform 0.3s;}
-#chat-bubble:hover{transform:scale(1.1);}
-#chat-window{display:none;position:fixed;bottom:100px;right:30px;width:340px;height:460px;background:white;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.15);z-index:9998;flex-direction:column;overflow:hidden;}
-#chat-window.open{display:flex;}
-#chat-header{background:#14532d;color:white;padding:14px 18px;font-size:16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
-#chat-messages{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;}
-.bot-msg{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d;padding:10px 14px;border-radius:14px 14px 14px 0;font-size:14px;max-width:85%;line-height:1.5;}
-.user-msg{background:#22c55e;color:white;padding:10px 14px;border-radius:14px 14px 0 14px;font-size:14px;max-width:85%;align-self:flex-end;}
-.thinking-msg{background:#f3f4f6;color:#6b7280;padding:10px 14px;border-radius:14px;font-size:13px;font-style:italic;}
-#chat-input-area{display:flex;padding:12px;border-top:1px solid #e5e7eb;gap:8px;}
-#chat-input{flex:1;padding:10px 14px;border:1px solid #d1d5db;border-radius:20px;font-size:14px;outline:none;}
-#chat-input:focus{border-color:#22c55e;}
-#chat-input-area button{background:#22c55e;color:white;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:15px;margin-top:0;padding:0;display:flex;align-items:center;justify-content:center;}
-</style>
+    <div id="chat-window">
+        <div id="chat-header">
+            <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
+            <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+        </div>
+        <div id="chat-messages">
+            <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask something..."
+                onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
 
-<script>
-function toggleChat(){
-    document.getElementById('chat-window').classList.toggle('open');
-}
-async function sendMessage(){
-    const input=document.getElementById('chat-input');
-    const messages=document.getElementById('chat-messages');
-    const userText=input.value.trim();
-    if(!userText) return;
-    messages.innerHTML+=`<div class="user-msg">${userText}</div>`;
-    input.value='';
-    messages.innerHTML+=`<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
-    messages.scrollTop=messages.scrollHeight;
-    try{
-        const response=await fetch('http://127.0.0.1:8000/api/chatbot/',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({message:userText})
-        });
-        const data=await response.json();
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">${data.reply}</div>`;
-    }catch(error){
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">⚠️ Could not connect.?</div>`;
-    }
-    messages.scrollTop=messages.scrollHeight;
-}
-</script>
-<script src="js/script.js"></script>
+    <style>
+        #chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.5);
+            z-index: 9999;
+            transition: transform 0.3s;
+        }
+
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-window {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 340px;
+            height: 460px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            z-index: 9998;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #chat-window.open {
+            display: flex;
+        }
+
+        #chat-header {
+            background: #14532d;
+            color: white;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bot-msg {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            padding: 10px 14px;
+            border-radius: 14px 14px 14px 0;
+            font-size: 14px;
+            max-width: 85%;
+            line-height: 1.5;
+        }
+
+        .user-msg {
+            background: #22c55e;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 14px 14px 0 14px;
+            font-size: 14px;
+            max-width: 85%;
+            align-self: flex-end;
+        }
+
+        .thinking-msg {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        #chat-input-area {
+            display: flex;
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            gap: 8px;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #chat-input:focus {
+            border-color: #22c55e;
+        }
+
+        #chat-input-area button {
+            background: #22c55e;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        function toggleChat() {
+            document.getElementById('chat-window').classList.toggle('open');
+        }
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const userText = input.value.trim();
+            if (!userText) return;
+            messages.innerHTML += `<div class="user-msg">${userText}</div>`;
+            input.value = '';
+            messages.innerHTML += `<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
+            messages.scrollTop = messages.scrollHeight;
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/chatbot/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userText })
+                });
+                const data = await response.json();
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">${data.reply}</div>`;
+            } catch (error) {
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">⚠️ Could not connect.?</div>`;
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

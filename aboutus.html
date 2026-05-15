@@ -1,598 +1,743 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>About Us - TripWise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        html,body{
-            margin:0;
-            padding:0;
-            overflow-x:hidden;
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
-        *{
-            box-sizing:border-box;
-            font-family:'Segoe UI', sans-serif;
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        body{
-            background:#f3f4f6;
-            color:#111827;
-            position:relative;
+        body {
+            background: #f3f4f6;
+            color: #111827;
+            position: relative;
         }
 
         /* 🌿 BLUR BACKGROUND */
-        body::before, body::after{
-            content:"";
-            position:fixed;
-            width:500px;
-            height:500px;
-            border-radius:50%;
-            filter:blur(140px);
-            z-index:-2;
-            animation:float 14s infinite alternate ease-in-out;
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -2;
+            animation: float 14s infinite alternate ease-in-out;
         }
 
-        body::before{
-            background:#22c55e;
-            top:80px;
-            left:80px;
+        body::before {
+            background: #22c55e;
+            top: 80px;
+            left: 80px;
         }
 
-        body::after{
-            background:#14532d;
-            bottom:80px;
-            right:80px;
-            animation-delay:4s;
+        body::after {
+            background: #14532d;
+            bottom: 80px;
+            right: 80px;
+            animation-delay: 4s;
         }
 
-        @keyframes float{
-            0%{transform:translate(0,0);}
-            100%{transform:translate(80px,-60px);}
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(80px, -60px);
+            }
         }
 
         /* ✨ FLOATING PARTICLES */
-        .particles{
-            position:fixed;
-            width:100%;
-            height:100%;
-            top:0;
-            left:0;
-            z-index:-1;
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
 
-        .particles span{
-            position:absolute;
-            width:6px;
-            height:6px;
-            background:#22c55e;
-            border-radius:50%;
-            opacity:0.5;
-            animation:rise 10s linear infinite;
+        .particles span {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: rise 10s linear infinite;
         }
 
-        @keyframes rise{
-            from{transform:translateY(100vh);}
-            to{transform:translateY(-10vh);}
+        @keyframes rise {
+            from {
+                transform: translateY(100vh);
+            }
+
+            to {
+                transform: translateY(-10vh);
+            }
         }
 
         /* NAVBAR */
-        nav{
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            background:#14532d;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:12px 40px;
-            z-index:1000;
-        }
-
-        .logo{
-            display:flex;
-            align-items:center;
-            gap:10px;
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #14532d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+            z-index: 1000;
         }
 
         .logo {
-    text-decoration: none;
-}
-        .logo img{
-            width:55px;
-            height:55px;
-            border-radius:12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .logo-text h1{
-            color:white;
-            font-size:30px;
-            margin:0;
+        .logo {
+            text-decoration: none;
         }
 
-        .logo-text p{
-            color:#d1d5db;
-            font-size:13px;
-            margin:0;
+        .logo img {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
         }
 
-        .nav-links{
-            display:flex;
-            gap:20px;
-            align-items:center;
+        .logo-text h1 {
+            color: white;
+            font-size: 30px;
+            margin: 0;
         }
 
-        .nav-links a{
-            color:white;
-            text-decoration:none;
-            font-size:18px;
-            display:flex;
-            align-items:center;
-            gap:6px;
-            transition:0.3s;
+        .logo-text p {
+            color: #d1d5db;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
         }
 
         /* ✨ NEON GLOW */
         .nav-links a:hover,
-        .nav-links a.active{
-            color:#22c55e;
-            text-shadow:0 0 8px #22c55e, 0 0 15px #22c55e;
+        .nav-links a.active {
+            color: #22c55e;
+            text-shadow: 0 0 8px #22c55e, 0 0 15px #22c55e;
         }
 
-        .contact-btn{
-            background:#22c55e;
-            padding:8px 16px;
-            border-radius:20px;
-            font-weight:600;
+        .contact-btn {
+            background: #22c55e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
         }
 
-        .contact-btn:hover{
-            background:#16a34a;
-            text-shadow:none;
+        .contact-btn:hover {
+            background: #16a34a;
+            text-shadow: none;
         }
 
-        .menu-btn{
-            color:white;
-            font-size:28px;
-            cursor:pointer;
+        .menu-btn {
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
         }
 
         /* SIDEBAR */
-        .sidebar{
-            position:fixed;
-            top:0;
-            right:-260px;
-            width:260px;
-            height:100%;
-            background:#14532d;
-            padding-top:90px;
-            transition:0.4s;
-            z-index:999;
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -260px;
+            width: 260px;
+            height: 100%;
+            background: #14532d;
+            padding-top: 90px;
+            transition: 0.4s;
+            z-index: 999;
         }
 
-        .sidebar.active{
-            right:0;
+        .sidebar.active {
+            right: 0;
         }
 
-        .sidebar a{
-            display:block;
-            color:white;
-            padding:18px 30px;
-            text-decoration:none;
-            font-size:18px;
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 18px 30px;
+            text-decoration: none;
+            font-size: 18px;
         }
 
-        .sidebar a.active{
-            background:#1c6b3a;
+        .sidebar a.active {
+            background: #1c6b3a;
         }
 
-        .sidebar a:hover{
-            background:#1c6b3a;
+        .sidebar a:hover {
+            background: #1c6b3a;
         }
 
         /* MAIN */
-        .main{
-            max-width:1100px;
-            margin:120px auto 40px;
-            padding:0 20px;
+        .main {
+            max-width: 1100px;
+            margin: 120px auto 40px;
+            padding: 0 20px;
         }
 
         /* ABOUT BOX */
-        .about-box{
-            background:rgba(255,255,255,0.7);
-            backdrop-filter:blur(12px);
-            border-radius:20px;
-            padding:40px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.1);
-            margin-bottom:40px;
+        .about-box {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
         }
 
-        .about-box h2{
-            color:#14532d;
-            font-size:36px;
+        .about-box h2 {
+            color: #14532d;
+            font-size: 36px;
         }
 
-        .about-box p{
-            font-size:18px;
-            color:#374151;
-            margin-top:15px;
-            line-height:1.8;
+        .about-box p {
+            font-size: 18px;
+            color: #374151;
+            margin-top: 15px;
+            line-height: 1.8;
         }
 
         /* TEAM */
-        .team{
-            text-align:center;
+        .team {
+            text-align: center;
         }
 
-        .team-badge{
-            background:#14532d;
-            color:white;
-            display:inline-block;
-            padding:8px 18px;
-            border-radius:20px;
-            margin-bottom:15px;
+        .team-badge {
+            background: #14532d;
+            color: white;
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin-bottom: 15px;
         }
 
-        .team h2{
-            font-size:38px;
-            color:#14532d;
-            margin-bottom:30px;
+        .team h2 {
+            font-size: 38px;
+            color: #14532d;
+            margin-bottom: 30px;
         }
 
-        .team-container{
-            display:flex;
-            flex-wrap:wrap;
-            justify-content:center;
-            gap:25px;
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
         }
 
-        .member{
-            background:white;
-            border-radius:20px;
-            padding:25px;
-            width:240px;
-            transition:0.4s;
-            box-shadow:0 6px 15px rgba(0,0,0,0.08);
+        .member {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            width: 240px;
+            transition: 0.4s;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
         }
 
-        .member:hover{
-            transform:translateY(-12px) scale(1.05);
-            box-shadow:0 20px 40px rgba(34,197,94,0.25);
+        .member:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.25);
         }
 
         /* AVATAR */
-        .avatar{
-            width:85px;
-            height:85px;
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:30px;
-            color:white;
-            margin:auto;
-            margin-bottom:15px;
+        .avatar {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            margin: auto;
+            margin-bottom: 15px;
         }
 
-        .mahima{background:linear-gradient(135deg,#ec4899,#8b5cf6,#6366f1);}
-        .komal{background:linear-gradient(135deg,#3b82f6,#60a5fa,#6366f1);}
-        .mansi{background:linear-gradient(135deg,#f59e0b,#ef4444);}
-        .khushi1{background:linear-gradient(135deg,#ec4899,#8b5cf6);}
-        .khushi2{background:linear-gradient(135deg,#06b6d4,#22c55e);}
+        .mahima {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #6366f1);
+        }
 
-        .role{
-            color:#22c55e;
-            font-weight:600;
+        .komal {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa, #6366f1);
+        }
+
+        .mansi {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+        }
+
+        .khushi1 {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+        }
+
+        .khushi2 {
+            background: linear-gradient(135deg, #06b6d4, #22c55e);
+        }
+
+        .role {
+            color: #22c55e;
+            font-weight: 600;
         }
 
         /* STRIP */
-        .promo-strip{
-            background:#14532d;
-            color:white;
-            padding:20px;
-            text-align:center;
+        .promo-strip {
+            background: #14532d;
+            color: white;
+            padding: 20px;
+            text-align: center;
         }
 
         /* FOOTER */
-        .footer{
-    background:#14532d;
-    color:white;
-    padding:30px 40px 20px;
-}
+        .footer {
+            background: #14532d;
+            color: white;
+            padding: 30px 40px 20px;
+        }
 
-/* CENTER TEXT */
-.footer-center{
-    text-align:center;
-    margin-bottom:15px;
-}
+        /* CENTER TEXT */
+        .footer-center {
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-.footer-center h2{
-    margin:0;
-    font-size:26px;
-}
+        .footer-center h2 {
+            margin: 0;
+            font-size: 26px;
+        }
 
-.footer-center p{
-    margin-top:5px;
-    color:#d1d5db;
-}
+        .footer-center p {
+            margin-top: 5px;
+            color: #d1d5db;
+        }
 
-/* BOTTOM ROW */
-.footer-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-}
+        /* BOTTOM ROW */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-/* LEFT LINKS */
-.footer-left{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
+        /* LEFT LINKS */
+        .footer-left {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-.footer-left a{
-    color:white;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
+        .footer-left a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-.footer-left a:hover{
-    color:#22c55e;
-}
+        .footer-left a:hover {
+            color: #22c55e;
+        }
 
-/* RIGHT TEXT */
-.footer-right{
-    font-size:14px;
-    color:#d1d5db;
-}
+        /* RIGHT TEXT */
+        .footer-right {
+            font-size: 14px;
+            color: #d1d5db;
+        }
 
-/* MOBILE RESPONSIVE */
-@media(max-width:768px){
-    .footer-bottom{
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-    }
-}
+        /* MOBILE RESPONSIVE */
+        @media(max-width:768px) {
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
 
-<!-- PARTICLES -->
-<div class="particles">
-    <span style="left:10%; animation-duration:8s;"></span>
-    <span style="left:25%; animation-duration:12s;"></span>
-    <span style="left:50%; animation-duration:10s;"></span>
-    <span style="left:75%; animation-duration:14s;"></span>
-    <span style="left:90%; animation-duration:9s;"></span>
-</div>
+    <!-- PARTICLES -->
+    <div class="particles">
+        <span style="left:10%; animation-duration:8s;"></span>
+        <span style="left:25%; animation-duration:12s;"></span>
+        <span style="left:50%; animation-duration:10s;"></span>
+        <span style="left:75%; animation-duration:14s;"></span>
+        <span style="left:90%; animation-duration:9s;"></span>
+    </div>
 
-<nav>
-    <a href="index.html" class="logo">
-        <img src="image/logo.png">
-        <div class="logo-text">
-            <h1>TripWise</h1>
-            <p>Split your expenses wisely</p>
-        </div>
-    </a>
-   
-
-    <div class="nav-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
-        <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
-        <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
-         <a href="aboutus.html" class="active">
-            <i class="fa-solid fa-circle-info"></i> About
-        </a>
-        <a href="contact.html" class="contact-btn">
-            <i class="fa-solid fa-phone"></i> Contact Us
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="image/logo.png">
+            <div class="logo-text">
+                <h1>TripWise</h1>
+                <p>Split your expenses wisely</p>
+            </div>
         </a>
 
-        <a href="create_acc.html"><i class="fa-solid fa-circle-user"></i> Profile</a>
-        
-    </div>
 
-    <div class="menu-btn" onclick="toggleSidebar()">
-        <i class="fa-solid fa-bars"></i>
-    </div>
-</nav>
-
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-    <a href="index.html">Home</a>
-    <a href="create_trip.html">Create Trip</a>
-    <a href="add_expense.html">Expenses</a>
-    <a href="summary.html">Summary</a>
-    <a href="create_acc.html">Profile</a>
-    <a href="aboutus.html" class="active">About</a>
-</div>
-
-<div class="main">
-
-    <div class="about-box">
-        <h1>About TripWise</h1>
-        <p>
-            TripWise is a modern web application built to simplify group travel expense management.
-            TripWise simplifies group travel expense management by providing a clean platform 
-            where users can track expenses, split costs, and manage trips efficiently. 
-              When people travel together, managing shared expenses can quickly become confusing and stressful. 
-            TripWise solves this problem by providing a clean, structured platform where users can create trips, 
-            add members, record expenses, and instantly track balances.
-
-            The platform focuses on transparency, ensuring that everyone clearly understands who paid and who owes. 
-            With an intuitive interface and smooth workflow, TripWise removes the need for manual calculations and 
-            awkward conversations about money. Whether it's a friends' trip, college tour, or family vacation, users 
-            can rely on TripWise to keep everything organized.
-
-            Our goal is to enhance the travel experience by eliminating financial confusion and allowing users to 
-            focus on creating memories instead of managing numbers.
-        </p>
-    </div>
-
-    <div div class="team">
-        <div class="team-badge">BS-AICS · IIT Patna Capstone Project</div>
-        <h1>👥 Meet the Team</h1>
-
-        <div div class="team-container">
-            <!-- members unchanged -->
-             <div class="member">
-                <div class="avatar mahima">M</div>
-                <h3>Mahima Kumari</h3>
-                <p class="role">Team Lead · Frontend</p>
-                <p>Project planning, HTML/CSS UI design, team coordination, and frontend integration.</p>
-            </div>
-
-            <div class="member">
-                <div class="avatar komal">K</div>
-                <h3>Komal</h3>
-                <p class="role">Backend Developer</p>
-                <p>Python backend logic for expense calculations and application functionality.</p>
-            </div>
-
-            <div class="member">
-                <div class="avatar mansi">M</div>
-                <h3>Mansi</h3>
-                <p class="role">AI Integration</p>
-                <p>AI chatbot feature integration to enhance user interaction within the platform.</p>
-            </div>
-
-            <div class="member">
-                <div class="avatar khushi1">K</div>
-                <h3>Khushi Kumari</h3>
-                <p class="role">JavaScript Developer</p>
-                <p>Form handling, dynamic page behavior, and interactive JavaScript features.</p>
-            </div>
-
-            <div class="member">
-                <div class="avatar khushi2">K</div>
-                <h3>Khushi Kumari</h3>
-                <p class="role">JS Developer & Testing</p>
-                <p>JavaScript development support, interactive features, and website testing.</p>
-            </div>
-        </div>
-        </div>
-        </div>
-    </div>
-
-</div>
-
-
-<footer class="footer">
-
-    <!-- CENTER TAGLINE -->
-    <div class="footer-center">
-        <h2>TripWise</h2>
-        <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
-    </div>
-
-    <br>
-    <br>
-    <hr style="border-color:#1c6b3a; margin:20px 0;">
-    <br>
-    <!-- BOTTOM ROW -->
-    <div class="footer-bottom">
-
-        <!-- LEFT -->
-        <div class="footer-left">
-            <a href="aboutus.html">
-                <i class="fa-solid fa-circle-info"></i> About Us
+        <div class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
+            <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
+            <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
+            <a href="aboutus.html" class="active">
+                <i class="fa-solid fa-circle-info"></i> About
             </a>
-
-            <a href="contact.html">
+            <a href="contact.html" class="contact-btn">
                 <i class="fa-solid fa-phone"></i> Contact Us
             </a>
 
-            <a href="#">
-                <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
-            </a>
+            <a href="create_acc.html"><i class="fa-solid fa-circle-user"></i> Profile</a>
+
         </div>
 
-        <!-- RIGHT -->
-        <div class="footer-right">
-            © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+        <div class="menu-btn" onclick="toggleSidebar()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="create_trip.html">Create Trip</a>
+        <a href="add_expense.html">Expenses</a>
+        <a href="summary.html">Summary</a>
+        <a href="create_acc.html">Profile</a>
+        <a href="aboutus.html" class="active">About</a>
+    </div>
+
+    <div class="main">
+
+        <div class="about-box">
+            <h1>About TripWise</h1>
+            <p>
+                TripWise is a modern web application built to simplify group travel expense management.
+                TripWise simplifies group travel expense management by providing a clean platform
+                where users can track expenses, split costs, and manage trips efficiently.
+                When people travel together, managing shared expenses can quickly become confusing and stressful.
+                TripWise solves this problem by providing a clean, structured platform where users can create trips,
+                add members, record expenses, and instantly track balances.
+
+                The platform focuses on transparency, ensuring that everyone clearly understands who paid and who owes.
+                With an intuitive interface and smooth workflow, TripWise removes the need for manual calculations and
+                awkward conversations about money. Whether it's a friends' trip, college tour, or family vacation, users
+                can rely on TripWise to keep everything organized.
+
+                Our goal is to enhance the travel experience by eliminating financial confusion and allowing users to
+                focus on creating memories instead of managing numbers.
+            </p>
         </div>
 
+        <div div class="team">
+            <div class="team-badge">BS-AICS · IIT Patna Capstone Project</div>
+            <h1>👥 Meet the Team</h1>
+
+            <div div class="team-container">
+                <!-- members unchanged -->
+                <div class="member">
+                    <div class="avatar mahima">M</div>
+                    <h3>Mahima Kumari</h3>
+                    <p class="role">Team Lead · Frontend</p>
+                    <p>Project planning, HTML/CSS UI design, team coordination, and frontend integration.</p>
+                </div>
+
+                <div class="member">
+                    <div class="avatar komal">K</div>
+                    <h3>Komal</h3>
+                    <p class="role">Backend Developer</p>
+                    <p>Python backend logic for expense calculations and application functionality.</p>
+                </div>
+
+                <div class="member">
+                    <div class="avatar mansi">M</div>
+                    <h3>Mansi</h3>
+                    <p class="role">AI Integration</p>
+                    <p>AI chatbot feature integration to enhance user interaction within the platform.</p>
+                </div>
+
+                <div class="member">
+                    <div class="avatar khushi1">K</div>
+                    <h3>Khushi Kumari</h3>
+                    <p class="role">JavaScript Developer</p>
+                    <p>Form handling, dynamic page behavior, and interactive JavaScript features.</p>
+                </div>
+
+                <div class="member">
+                    <div class="avatar khushi2">K</div>
+                    <h3>Khushi Kumari</h3>
+                    <p class="role">JS Developer & Testing</p>
+                    <p>JavaScript development support, interactive features, and website testing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
-</footer>
-<script>
-function toggleSidebar(){
-    document.getElementById("sidebar").classList.toggle("active");
-}
-</script>
-<!-- TRIPWISE AI CHAT BUBBLE -->
-<div id="chat-bubble" onclick="toggleChat()">
-    <i class="fa-solid fa-robot"></i>
-</div>
-
-<div id="chat-window">
-    <div id="chat-header">
-        <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
-        <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
     </div>
-    <div id="chat-messages">
-        <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
-    </div>
-    <div id="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Ask something..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
-</div>
 
-<style>
-#chat-bubble{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;color:white;cursor:pointer;box-shadow:0 4px 20px rgba(34,197,94,0.5);z-index:9999;transition:transform 0.3s;}
-#chat-bubble:hover{transform:scale(1.1);}
-#chat-window{display:none;position:fixed;bottom:100px;right:30px;width:340px;height:460px;background:white;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.15);z-index:9998;flex-direction:column;overflow:hidden;}
-#chat-window.open{display:flex;}
-#chat-header{background:#14532d;color:white;padding:14px 18px;font-size:16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
-#chat-messages{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;}
-.bot-msg{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d;padding:10px 14px;border-radius:14px 14px 14px 0;font-size:14px;max-width:85%;line-height:1.5;}
-.user-msg{background:#22c55e;color:white;padding:10px 14px;border-radius:14px 14px 0 14px;font-size:14px;max-width:85%;align-self:flex-end;}
-.thinking-msg{background:#f3f4f6;color:#6b7280;padding:10px 14px;border-radius:14px;font-size:13px;font-style:italic;}
-#chat-input-area{display:flex;padding:12px;border-top:1px solid #e5e7eb;gap:8px;}
-#chat-input{flex:1;padding:10px 14px;border:1px solid #d1d5db;border-radius:20px;font-size:14px;outline:none;}
-#chat-input:focus{border-color:#22c55e;}
-#chat-input-area button{background:#22c55e;color:white;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:15px;margin-top:0;padding:0;display:flex;align-items:center;justify-content:center;}
-</style>
 
-<script>
-function toggleChat(){
-    document.getElementById('chat-window').classList.toggle('open');
-}
-async function sendMessage(){
-    const input=document.getElementById('chat-input');
-    const messages=document.getElementById('chat-messages');
-    const userText=input.value.trim();
-    if(!userText) return;
-    messages.innerHTML+=`<div class="user-msg">${userText}</div>`;
-    input.value='';
-    messages.innerHTML+=`<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
-    messages.scrollTop=messages.scrollHeight;
-    try{
-        const response=await fetch('http://127.0.0.1:8000/api/chatbot/',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({message:userText})
-        });
-        const data=await response.json();
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">${data.reply}</div>`;
-    }catch(error){
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">⚠️ Could not connect.?</div>`;
-    }
-    messages.scrollTop=messages.scrollHeight;
-}
-</script>
-<script src="js/script.js"></script>
+    <footer class="footer">
+
+        <!-- CENTER TAGLINE -->
+        <div class="footer-center">
+            <h2>TripWise</h2>
+            <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
+        </div>
+
+        <br>
+        <br>
+        <hr style="border-color:#1c6b3a; margin:20px 0;">
+        <br>
+        <!-- BOTTOM ROW -->
+        <div class="footer-bottom">
+
+            <!-- LEFT -->
+            <div class="footer-left">
+                <a href="aboutus.html">
+                    <i class="fa-solid fa-circle-info"></i> About Us
+                </a>
+
+                <a href="contact.html">
+                    <i class="fa-solid fa-phone"></i> Contact Us
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
+                </a>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="footer-right">
+                © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+            </div>
+
+        </div>
+
+    </footer>
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+    <!-- TRIPWISE AI CHAT BUBBLE -->
+    <div id="chat-bubble" onclick="toggleChat()">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div id="chat-window">
+        <div id="chat-header">
+            <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
+            <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+        </div>
+        <div id="chat-messages">
+            <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask something..."
+                onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <style>
+        #chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.5);
+            z-index: 9999;
+            transition: transform 0.3s;
+        }
+
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-window {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 340px;
+            height: 460px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            z-index: 9998;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #chat-window.open {
+            display: flex;
+        }
+
+        #chat-header {
+            background: #14532d;
+            color: white;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bot-msg {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            padding: 10px 14px;
+            border-radius: 14px 14px 14px 0;
+            font-size: 14px;
+            max-width: 85%;
+            line-height: 1.5;
+        }
+
+        .user-msg {
+            background: #22c55e;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 14px 14px 0 14px;
+            font-size: 14px;
+            max-width: 85%;
+            align-self: flex-end;
+        }
+
+        .thinking-msg {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        #chat-input-area {
+            display: flex;
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            gap: 8px;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #chat-input:focus {
+            border-color: #22c55e;
+        }
+
+        #chat-input-area button {
+            background: #22c55e;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        function toggleChat() {
+            document.getElementById('chat-window').classList.toggle('open');
+        }
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const userText = input.value.trim();
+            if (!userText) return;
+            messages.innerHTML += `<div class="user-msg">${userText}</div>`;
+            input.value = '';
+            messages.innerHTML += `<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
+            messages.scrollTop = messages.scrollHeight;
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/chatbot/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userText })
+                });
+                const data = await response.json();
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">${data.reply}</div>`;
+            } catch (error) {
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">⚠️ Could not connect.?</div>`;
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

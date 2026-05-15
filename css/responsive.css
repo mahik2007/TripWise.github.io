@@ -1,0 +1,401 @@
+/* Mobile Responsive Adjustments */
+
+/* Hero Section */
+@media(max-width:768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .hero-text {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .hero-text h2 {
+        font-size: 36px;
+    }
+
+    .hero-text p {
+        font-size: 20px;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+}
+
+/* Features Section */
+@media(max-width:768px) {
+    .features {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .feature {
+        width: 100%;
+    }
+}
+
+/* Welcome Section */
+@media(max-width:768px) {
+    .welcome {
+        padding: 20px;
+    }
+
+    .welcome h2 {
+        font-size: 32px;
+    }
+
+    .welcome p {
+        font-size: 18px;
+    }
+}
+
+/* Destinations Section */
+@media(max-width:768px) {
+    .destinations {
+        justify-content: center;
+    }
+
+    .card {
+        width: 80%;
+        margin: 0 auto 20px;
+    }
+}
+
+/* Why Tripwise Section */
+@media(max-width:768px) {
+    .why-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .why-card {
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+/* Feedback Section */
+@media(max-width:768px) {
+    .feedback-container {
+        padding: 5px;
+    }
+
+    .feedback-card {
+        min-width: 250px;
+        margin: 0 auto;
+    }
+}
+
+/* Footer Adjustments */
+@media(max-width:480px) {
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-center h2 {
+        font-size: 22px;
+    }
+
+    .footer-center p {
+        font-size: 14px;
+    }
+
+    .footer-left {
+        gap: 10px;
+    }
+
+    .footer-left a {
+        font-size: 14px;
+    }
+
+    .footer-right {
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Sidebar Adjustments */
+@media(max-width:768px) {
+    .sidebar {
+        width: 250px;
+    }
+
+    .sidebar a {
+        padding: 18px 25px;
+        font-size: 24px;
+    }
+}
+
+/* Navbar Improvements */
+nav {
+    background: linear-gradient(135deg, #14532d 0%, #0f3d1f 100%);
+    padding: 14px 28px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    gap: 14px;
+    align-items: center;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-links a {
+    padding: 10px 14px;
+    border-radius: 999px;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+}
+
+.contact-btn {
+    background: #22c55e;
+    padding: 10px 16px;
+    border-radius: 999px;
+}
+
+.menu-btn {
+    display: none;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    padding: 0;
+    border-radius: 14px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+@media(max-width:900px) {
+    nav {
+        padding: 12px 20px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: none !important;
+    }
+
+    .menu-btn {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        padding: 0;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+    }
+
+    .menu-btn i {
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    .sidebar {
+        top: 72px;
+        width: 260px;
+        max-width: calc(100% - 24px);
+    }
+
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+@media(max-width:768px) {
+    nav {
+        padding: 10px 16px;
+        gap: 10px;
+    }
+
+    .logo img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .logo-text h1 {
+        font-size: 18px;
+    }
+
+    .logo-text p {
+        font-size: 12px;
+    }
+
+    .menu-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+
+    .menu-btn i {
+        font-size: 18px;
+    }
+
+    .main {
+        padding: 0 16px;
+    }
+
+    .about-box,
+    .summary-box,
+    .card,
+    .trip-card,
+    .form-section,
+    .image-section,
+    .expense-block,
+    .members .card,
+    .team,
+    .team-container {
+        width: 100%;
+    }
+
+    .about-box {
+        padding: 24px;
+    }
+
+    .summary-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        text-align: left;
+    }
+
+    .card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .card-left {
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .card input {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .form-section,
+    .image-section {
+        width: 100%;
+    }
+
+    .image-section img {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .form-section h1 {
+        font-size: 34px;
+    }
+
+    .member {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .team-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .expense-block {
+        padding: 20px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+@media(max-width:480px) {
+    nav {
+        padding: 10px 14px;
+    }
+
+    .logo img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logo-text h1 {
+        font-size: 16px;
+    }
+
+    .logo-text p {
+        font-size: 11px;
+    }
+
+    .menu-btn {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        padding: 12px 16px;
+    }
+
+    .contact-btn,
+    .nav-links a {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+/* Trust Users Section */
+@media(max-width:768px) {
+    .trust-users {
+        gap: 8px;
+    }
+
+    .user {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .trust-text {
+        font-size: 12px;
+    }
+}
+
+/* AOS Animation Adjustments */
+@media(max-width:768px) {
+    [data-aos] {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}

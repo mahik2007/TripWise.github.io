@@ -1,515 +1,463 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>create account - TripWise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Segoe UI', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        body{
-            background:#f3f4f6;
-            color:#111827;
+        body {
+            background: #f3f4f6;
+            color: #111827;
         }
 
-        nav{
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            background:#14532d;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:14px 40px;
-            z-index:1000;
-            box-shadow:0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .logo{
-            display:flex;
-            align-items:center;
-            gap:12px;
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #14532d;
+            display: flex;
+            align-items: center;
+            padding: 14px 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .logo {
-    text-decoration: none;
-}
-        .logo img{
-            width:60px;
-            height:60px;
-            border-radius:10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .logo-text h1{
-            color:white;
-            font-size:32px;
-            line-height:1;
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
         }
 
-        .logo-text p{
-            color:#d1d5db;
-            font-size:14px;
-            margin-top:3px;
-        }
-        .nav-links{
-            display:flex;
-            align-items:center;
-            gap:30px;
+        .logo-text h1 {
+            color: white;
+            font-size: 32px;
+            line-height: 1;
         }
 
-        .nav-links a{
-            color:white;
-            text-decoration:none;
-            font-size:18px;
-            font-weight:500;
-            transition:0.3s;
+        .logo-text p {
+            color: #d1d5db;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
         }
 
         .nav-links a:hover,
-        .nav-links a.active{
-            color:#22c55e;
+        .nav-links a.active {
+            color: #22c55e;
+            text-shadow: 0 0 8px #22c55e, 0 0 15px #22c55e;
         }
 
-        .profile-link{
-            display:flex;
-            align-items:center;
-            gap:8px;
+        .contact-btn {
+            background: #22c55e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
         }
 
-        .profile-link i{
-            font-size:20px;
+        .contact-btn:hover {
+            background: #16a34a;
+            text-shadow: none;
         }
-        
-        .navbar{
-    display:flex;
-    align-items:center;
-}
- nav{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    background:#14532d;
-    display:flex;
- 
-    align-items:center;
-    padding:14px 40px;
-    z-index:1000;
-}
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:22px;
-    margin-left:auto;
-    margin-right:70px;
-     position:absolute;
-    left:55%;   /* same value you used before */
-    transform:translateX(-50%);
-       white-space:nowrap;
-    
-    
-}
+        .menu-btn {
+            position: fixed;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            display: block;
+            top: 22px;
+            right: 30px;
+            font-size: 32px;
+            z-index: 5000;
+        }
 
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    align-items: center;
-    font-size:18px;
-    font-weight:500;
-    transition:0.3s;
-}
+        .sidebar.active {
+            right: 0;
+        }
 
-.nav-links a:hover,
-.nav-links a.active{
-    color:#22c55e;
-}
-/* ✨ NEON HOVER */
-.nav-links a:hover,
-.nav-links a.active{
-    color:#22c55e;
-    text-shadow:0 0 8px #22c55e,0 0 15px #22c55e;
-}
+        .menu-icon {
+            margin-left: auto;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
 
-/* CONTACT BUTTON */
-.contact-btn{
-    background:#22c55e;
-    padding:8px 16px;
-    border-radius:20px;
-    font-weight:600;
-}
-
-.contact-btn:hover{
-    background:#16a34a;
-    text-shadow:none;
-}
-.menu-btn{
-    position:fixed;
-    color:white;
-    font-size:32px;
-    cursor:pointer;
-    display:block;
-    top:22px;
-    right:30px;
-    font-size:32px;
-    z-index:5000;
-}
-.sidebar.active{
-    right:0;
-}
-.menu-icon{
-    margin-left:auto;
-    font-size:30px;
-    color:white;
-    cursor:pointer;
-}
         /* Hamburger */
-        .menu-btn{
-           
-    position:fixed;
-    color:white;
-    font-size:32px;
-    cursor:pointer;
-    display:block;
-    top:22px;
-    right:30px;
-    font-size:32px;
-    z-index:5000;
-        }
-        .sidebar.active{
-    right:0;
-}
+        .menu-btn {
 
-        .menu-icon{
-    font-size:30px;
-    color:white;
-    cursor:pointer;
-    margin-right:20px;
-}
+            position: fixed;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            display: block;
+            top: 22px;
+            right: 30px;
+            font-size: 32px;
+            z-index: 5000;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            margin-right: 20px;
+        }
 
 
 
         /* Sidebar */
-        .menu-icon{
-    font-size:30px;
-    color:white;
-    cursor:pointer;
-    margin-right:20px;
-}
-.menu-btn{
-    position:fixed;
-    color:white;
-    font-size:32px;
-    cursor:pointer;
-    display:block;
-    top:22px;
-    right:30px;
-    font-size:32px;
-    z-index:5000;
-}
-.sidebar.active{
-    right:0;
-}
+        .menu-icon {
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            margin-right: 20px;
+        }
 
-.sidebar{
-    position:fixed;
-     position:fixed;
-    top:88px;
-    right:-250px;
-    width:250px;
-    height:calc(100% - 88px);
-    background:#14532d;
-    transition:0.4s;
-    z-index:2000;
-    border-top:1px solid rgba(255,255,255,0.15);
-    padding-top:80px;
-}
- .sidebar.active{
-    right:0;
-}
+        .menu-btn {
+            position: fixed;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            display: block;
+            top: 22px;
+            right: 30px;
+            font-size: 32px;
+            z-index: 5000;
+        }
 
-.sidebar a{
-    display:block;
-    color:white;
-    text-decoration:none;
-    padding:18px 30px;
-    font-size:20px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-}
+        .sidebar.active {
+            right: 0;
+        }
 
-.sidebar a:hover{
-    background:#22c55e;
-}
-       
+        .sidebar {
+            position: fixed;
+            position: fixed;
+            top: 88px;
+            right: -250px;
+            width: 250px;
+            height: calc(100% - 88px);
+            background: #14532d;
+            transition: 0.4s;
+            z-index: 2000;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 80px;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar a:hover {
+            background: #22c55e;
+        }
+
 
         /* Main Section */
-        .main{
-            max-width:1200px;
-            margin:120px auto 40px;
-            padding:0 20px;
+        .main {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 0 20px;
         }
 
-        .hero{
-            background:white;
-            border-radius:20px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
-            padding:50px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:40px;
+        .hero {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
         }
 
-        .hero-text{
-            width:55%;
+        .hero-text {
+            width: 55%;
         }
 
-        .hero-text h2{
-            font-size:64px;
-            line-height:1.1;
-            margin-bottom:20px;
+        .hero-text h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
-        .hero-text h2 span{
-            color:#22c55e;
+        .hero-text h2 span {
+            color: #22c55e;
         }
 
-        .hero-text p{
-            font-size:26px;
-            color:#374151;
-            margin-bottom:30px;
-            line-height:1.5;
+        .hero-text p {
+            font-size: 26px;
+            color: #374151;
+            margin-bottom: 30px;
+            line-height: 1.5;
         }
 
-        .buttons{
-            display:flex;
-            gap:18px;
+        .buttons {
+            display: flex;
+            gap: 18px;
         }
 
-        .buttons button{
-            padding:14px 28px;
-            border:none;
-            border-radius:12px;
-            font-size:18px;
-            font-weight:600;
-            cursor:pointer;
-            transition:0.3s;
+        .buttons button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .primary-btn{
-            background:#22c55e;
-            color:white;
+        .primary-btn {
+            background: #22c55e;
+            color: white;
         }
 
-        .primary-btn:hover{
-            background:#16a34a;
-            transform:translateY(-2px);
+        .primary-btn:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
         }
 
-        .secondary-btn{
-            background:white;
-            color:#14532d;
-            border:2px solid #d1d5db !important;
+        .secondary-btn {
+            background: white;
+            color: #14532d;
+            border: 2px solid #d1d5db !important;
         }
 
-        .secondary-btn:hover{
-            background:#f3f4f6;
+        .secondary-btn:hover {
+            background: #f3f4f6;
         }
 
-        .hero-image img{
-            width:350px;
+        .hero-image img {
+            width: 350px;
         }
 
-        
-        .features{
-            margin-top:35px;
-            background:white;
-            border-radius:20px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
-            padding:35px 20px;
-            display:flex;
-            justify-content:space-around;
-            text-align:center;
+
+        .features {
+            margin-top: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 35px 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
         }
 
-        .feature{
-            width:30%;
-            padding:10px 20px;
+        .feature {
+            width: 30%;
+            padding: 10px 20px;
         }
 
-        .feature i{
-            font-size:42px;
-            color:#22c55e;
-            margin-bottom:18px;
+        .feature i {
+            font-size: 42px;
+            color: #22c55e;
+            margin-bottom: 18px;
         }
 
-        .feature h3{
-            font-size:34px;
-            margin-bottom:12px;
+        .feature h3 {
+            font-size: 34px;
+            margin-bottom: 12px;
         }
 
-        .feature p{
-            color:#4b5563;
-            font-size:20px;
-            line-height:1.5;
+        .feature p {
+            color: #4b5563;
+            font-size: 20px;
+            line-height: 1.5;
         }
 
-        .create-account{
-            margin-top:35px;
-            background:white;
-            border-radius:20px;
-            padding:35px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        .create-account {
+            margin-top: 35px;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
-        .create-account{
-            margin:120px auto 40px;
-            max-width:520px;
-            background:white;
-            border-radius:20px;
-            padding:35px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        .create-account {
+            margin: 120px auto 40px;
+            max-width: 520px;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
-        .create-account h2{
-            font-size:36px;
-            margin-bottom:15px;
-            color:#14532d;
-            text-align:center;
+        .create-account h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #14532d;
+            text-align: center;
         }
 
-        .create-account p{
-            font-size:18px;
-            line-height:1.8;
-            color:#374151;
-            text-align:center;
-            margin-bottom:30px;
+        .create-account p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #374151;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .create-account form{
-            display:flex;
-            flex-direction:column;
-            gap:18px;
+        .create-account form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
-        .field-row{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:12px;
+        .field-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
 
-        .field-row label{
-            width:120px;
-            font-size:16px;
-            font-weight:600;
-            color:#111827;
-            text-align:right;
+        .field-row label {
+            width: 120px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            text-align: right;
         }
 
-        .create-account input{
-            flex:1;
-            padding:14px 16px;
-            border:1px solid #d1d5db;
-            border-radius:10px;
-            font-size:16px;
-            background:#f9fafb;
-            color:#111827;
+        .create-account input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #f9fafb;
+            color: #111827;
         }
 
-        .create-account input:focus{
-            outline:none;
-            border-color:#22c55e;
-            box-shadow:0 0 0 4px rgba(34,197,94,0.12);
+        .create-account input:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
         }
 
-        .create-account button{
-            width:fit-content;
-            padding:14px 28px;
-            background:#22c55e;
-            color:white;
-            border:none;
-            border-radius:10px;
-            font-size:16px;
-            font-weight:600;
-            cursor:pointer;
-            transition:0.3s;
-            align-self:center;
+        .create-account button {
+            width: fit-content;
+            padding: 14px 28px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            align-self: center;
         }
 
-        .create-account button:hover{
-            background:#16a34a;
-            transform:translateY(-1px);
+        .create-account button:hover {
+            background: #16a34a;
+            transform: translateY(-1px);
         }
 
-        .footer{
-    margin-top:60px;
-    background:#14532d;
-    color:white;
-    padding-top:35px;
-}
+        .footer {
+            margin-top: 60px;
+            background: #14532d;
+            color: white;
+            padding-top: 35px;
+        }
 
-.footer-content{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    padding:0 40px 30px;
-}
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 40px 30px;
+        }
 
-.footer-left h3{
-    font-size:28px;
-    margin-bottom:10px;
-}
+        .footer-left h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
 
-.footer-left p{
-    max-width:300px;
-    line-height:1.7;
-    color:#d1d5db;
-}
+        .footer-left p {
+            max-width: 300px;
+            line-height: 1.7;
+            color: #d1d5db;
+        }
 
-.footer-links{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-.footer-links a{
-    color:white;
-    text-decoration:none;
-    transition:0.3s;
-}
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-.footer-links a:hover{
-    color:#86efac;
-}
+        .footer-links a:hover {
+            color: #86efac;
+        }
 
-.footer-bottom{
-    text-align:center;
-    border-top:1px solid rgba(255,255,255,0.2);
-    padding:18px;
-    font-size:15px;
-    color:#d1d5db;
-}
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 18px;
+            font-size: 15px;
+            color: #d1d5db;
+        }
+    </style>
 
-        
-        </style>
-
-        <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 
 
-    <body>
-<!-- Navbar -->
+<body>
+    <!-- Navbar -->
     <nav>
         <a href="index.html" class="logo">
             <img src="image/logo.png" alt="TripWise Logo">
@@ -519,47 +467,47 @@
             </div>
         </a>
         <div class="nav-links">
-        <a href="index.html" ><i class="fa-solid fa-house"></i> Home</a>
-        <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
-        <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
-        <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
+            <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
+            <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-        <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
 
-        <a href="contact.html" class="contact-btn">
-            <i class="fa-solid fa-phone"></i> Contact Us
-        </a>
+            <a href="contact.html" class="contact-btn">
+                <i class="fa-solid fa-phone"></i> Contact Us
+            </a>
 
-        <a href="create_acc.html" class="active">
-            <i class="fa-solid fa-circle-user"></i> Profile
-        </a>
-    </div>
-       
+            <a href="create_acc.html" class="active">
+                <i class="fa-solid fa-circle-user"></i> Profile
+            </a>
+        </div>
+
 
         <div class="menu-btn" onclick="openSidebar()">
             <i class="fa-solid fa-bars"></i>
         </div>
-         
+
     </nav>
 
     <!-- Sidebar -->
-    
 
-<div class="sidebar" id="sidebar">
-    <a href="index.html">Home</a>
-    <a href="create_trip.html">Create Trip</a>
-    <a href="add_expense.html">Expenses</a>
-    <a href="summary.html">Summary</a>
-    <a href="aboutus.html">About</a>
-    <a href="create_acc.html" class="profile-link">
-        <i class="fa-solid fa-circle-user"></i> Profile
-    </a>
-</div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="create_trip.html">Create Trip</a>
+        <a href="add_expense.html">Expenses</a>
+        <a href="summary.html">Summary</a>
+        <a href="aboutus.html">About</a>
+        <a href="create_acc.html" class="profile-link">
+            <i class="fa-solid fa-circle-user"></i> Profile
+        </a>
+    </div>
     <main class="main">
         <div class="create-account">
             <h2>Create Account</h2>
             <p>Join TripWise to start managing your group expenses effortlessly.</p>
-            
+
             <form action="login.html" method="get">
                 <div class="field-row">
                     <label for="name">Name:</label>
@@ -582,26 +530,27 @@
         </div>
     </main>
 
-            <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-left">
-            <h3>TripWise</h3>
-            <p>Split your expenses wisely and enjoy stress-free trips.</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>TripWise</h3>
+                <p>Split your expenses wisely and enjoy stress-free trips.</p>
+            </div>
+
+
         </div>
 
-       
-    </div>
+        <div class="footer-bottom">
+            © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+        </div>
+    </footer>
 
-    <div class="footer-bottom">
-        © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
-    </div>
-</footer>
-
-<script>
-    function openSidebar() {
-        document.getElementById("sidebar").classList.toggle("active");
-    }
-</script>
-<script src="js/script.js"></script>
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

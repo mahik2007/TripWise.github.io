@@ -1,601 +1,889 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Add Expense - TripWise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Segoe UI', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        body{
-            background:#f3f4f6;
+        body {
+            background: #f3f4f6;
         }
 
         /* 🌿 BLUR BACKGROUND */
-body::before, body::after{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    filter:blur(140px);
-    z-index:-2;
-    animation:float 14s infinite alternate ease-in-out;
-}
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -2;
+            animation: float 14s infinite alternate ease-in-out;
+        }
 
-body::before{
-    background:#22c55e;
-    top:80px;
-    left:80px;
-}
+        body::before {
+            background: #22c55e;
+            top: 80px;
+            left: 80px;
+        }
 
-body::after{
-    background:#14532d;
-    bottom:80px;
-    right:80px;
-}
+        body::after {
+            background: #14532d;
+            bottom: 80px;
+            right: 80px;
+        }
 
-@keyframes float{
-    0%{transform:translate(0,0);}
-    100%{transform:translate(80px,-60px);}
-}
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
 
-/* ✨ FLOATING PARTICLES */
-.particles span{
-    position:fixed;
-    width:6px;
-    height:6px;
-    background:#22c55e;
-    border-radius:50%;
-    opacity:0.4;
-    animation:move 10s linear infinite;
-    z-index:-1;
-}
+            100% {
+                transform: translate(80px, -60px);
+            }
+        }
 
-@keyframes move{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh);}
-}
+        /* ✨ FLOATING PARTICLES */
+        .particles span {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: move 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateY(100vh);
+            }
+
+            to {
+                transform: translateY(-10vh);
+            }
+        }
 
         /* NAVBAR */
-        nav{
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            background:#14532d;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:14px 40px;
-            z-index:1000;
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #14532d 0%, #0f3d1f 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            z-index: 1000;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
         }
 
-        .logo{
-            display:flex;
-            align-items:center;
-            gap:12px;
-        }
         .logo {
-    text-decoration: none;
-}
-
-        .logo img{
-            width:60px;
-            height:60px;
-            border-radius:10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            flex-shrink: 0;
         }
 
-        .logo-text h1{
-            color:white;
-            font-size:32px;
+        .logo img {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
         }
 
-        .logo-text p{
-            color:#d1d5db;
-            font-size:14px;
+        .logo-text h1 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
         }
 
-        .nav-links{
-            display:flex;
-            gap:30px;
+        .logo-text p {
+            color: #d1d5db;
+            font-size: 12px;
+            margin: 0;
         }
 
-        .nav-links a{
-            color:white;
-            text-decoration:none;
-            font-size:18px;
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1 1 auto;
+            min-width: 0;
         }
 
-        .nav-links a.active{
-            color:#22c55e;
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            transition: background 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
         }
 
-        /* NAV ICON ALIGN */
-.nav-links a{
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
-
-        /* NEON EFFECT */
-.nav-links a:hover,
-.nav-links a.active{
-    color:#22c55e;
-    text-shadow:0 0 8px #22c55e, 0 0 15px #22c55e;
-}
-
-        
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: #22c55e;
+            text-shadow: 0 0 8px #22c55e, 0 0 15px #22c55e;
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.08);
+        }
 
         /* CONTACT BUTTON */
-.contact-btn{
-    background:#22c55e;
-    padding:8px 16px;
-    border-radius:20px;
-}
-        .menu-btn{
-            color:white;
-            font-size:30px;
-            cursor:pointer;
+        .contact-btn {
+            background: #22c55e;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .menu-btn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         /* SIDEBAR */
-        .sidebar{
-            position:fixed;
-            top:80px;
-            right:-260px;
-            width:260px;
-            height:100%;
-            background:#14532d;
-            transition:0.4s;
-            padding-top:20px;
+        .sidebar {
+            position: fixed;
+            top: 80px;
+            right: -260px;
+            width: 260px;
+            height: 100%;
+            background: #14532d;
+            transition: 0.4s;
+            padding-top: 20px;
         }
 
-        .sidebar.active{
-            right:0;
+        .sidebar.active {
+            right: 0;
         }
 
-        .sidebar a{
-            display:block;
-            color:white;
-            padding:18px 25px;
-            text-decoration:none;
-            font-size:20px;
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 18px 25px;
+            text-decoration: none;
+            font-size: 20px;
         }
 
-        .sidebar a:hover{
-            background:#22c55e;
+        .sidebar a:hover {
+            background: #22c55e;
         }
 
         /* MAIN */
-        .main{
-            max-width:1000px;
-            margin:120px auto;
-            background:white;
-            padding:40px;
-            border-radius:20px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        .main {
+            max-width: 1000px;
+            margin: 130px auto 40px;
+            background: white;
+            padding: 38px;
+            border-radius: 28px;
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.08);
         }
 
-        h2{
-            text-align:center;
-            color:#14532d;
-            margin-bottom:25px;
+        h1,
+        h2 {
+            text-align: center;
+            color: #14532d;
+            margin-bottom: 20px;
+            font-weight: 800;
         }
 
-        label{
-            font-weight:600;
-            display:block;
-            margin-top:15px;
+        h1 {
+            font-size: 34px;
         }
 
-        input, select{
-            width:100%;
-            padding:12px;
-            margin-top:8px;
-            border-radius:10px;
-            border:1px solid #ccc;
+        h2 {
+            font-size: 28px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
         }
 
         /* EXPENSE BLOCK */
-        .expense-block{
-            margin-top:20px;
-            padding:15px;
-            border-radius:12px;
-            background:#f9fafb;
+        .expense-block {
+            margin-top: 22px;
+            padding: 26px;
+            border-radius: 22px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            box-shadow: inset 0 0 0 1px rgba(209, 213, 219, 0.18);
+        }
+
+        .expense-block label {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 15px;
+            color: #111827;
+        }
+
+        .expense-block select,
+        .expense-block input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid #d1d5db;
+            background: white;
+            margin-top: 10px;
         }
 
         /* MEMBER CARDS */
-        .members{
-            margin-top:30px;
+        .members {
+            margin-top: 34px;
         }
 
-        .card{
-            background:white;
-            border-radius:20px;
-            padding:25px;
-            margin-top:15px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            box-shadow:0 10px 25px rgba(0,0,0,0.1);
-            transition:0.3s;
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+            transition: box-shadow 0.3s ease;
         }
 
-        .card:hover{
-            transform:scale(1.05);
+        .card:hover {
+            box-shadow: 0 20px 55px rgba(15, 23, 42, 0.12);
+            transform: none;
         }
 
-        .card-left{
-            display:flex;
-            align-items:center;
-            gap:15px;
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .card i{
-            font-size:40px;
-            color:#14532d;
+        .card i {
+            font-size: 40px;
+            color: #14532d;
         }
 
-        .card input{
-            width:120px;
+        .card input {
+            width: 160px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid #d1d5db;
+            background: #f8fafc;
         }
 
         /* BUTTON */
-        button{
-            width:100%;
-            padding:14px;
-            background:#22c55e;
-            color:white;
-            border:none;
-            border-radius:10px;
-            font-size:18px;
-            margin-top:30px;
-            cursor:pointer;
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            margin-top: 30px;
+            cursor: pointer;
         }
 
-        button:hover{
-            background:#16a34a;
+        button:hover {
+            background: #16a34a;
         }
 
         /* FOOTER */
-.footer{
-    background:#14532d;
-    color:white;
-    padding:30px 40px;
-}
+        .footer {
+            background: #14532d;
+            color: white;
+            padding: 30px 40px;
+        }
 
-.footer-center{
-    color:white;
-    text-align:center;
-    margin-bottom:15px;
-}
+        .footer-center {
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-.footer-bottom{
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-}
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
 
-.footer-left{
-    display:flex;
-    gap:20px;
-}
+        .footer-left {
+            display: flex;
+            gap: 20px;
+        }
 
-.footer-left a{
-    color:white;
-    text-decoration:none;
-    display:flex;
-    gap:6px;
-}
+        .footer-left a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            gap: 6px;
+        }
 
-.footer-left a:hover{
-    color:#22c55e;
-}
+        .footer-left a:hover {
+            color: #22c55e;
+        }
 
-.footer-center h2{
-    color:white;
-}
+        .footer-center h2 {
+            color: white;
+        }
 
-/* MOBILE RESPONSIVE */
-@media(max-width:768px){
-    .footer-bottom{
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-    }
-}
+        /* MOBILE RESPONSIVE */
+        @media(max-width:900px) {
+            nav {
+                padding: 14px 16px;
+            }
 
+            .nav-links {
+                display: none;
+            }
 
+            .menu-btn {
+                display: flex;
+                flex-shrink: 0;
+            }
+
+            .sidebar {
+                top: 72px;
+                width: 260px;
+                height: calc(100% - 72px);
+            }
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 14px 18px;
+            }
+
+            .logo img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .logo-text h1 {
+                font-size: 18px;
+            }
+
+            .logo-text p {
+                font-size: 11px;
+            }
+
+            .main {
+                margin: 110px 16px 40px;
+                padding: 26px;
+            }
+
+            .card {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 14px;
+            }
+
+            .card input {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .expense-block {
+                padding: 20px;
+            }
+
+            .nav-links a,
+            .contact-btn {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        @media(max-width:480px) {
+            nav {
+                padding: 12px 14px;
+            }
+
+            .logo img {
+                width: 42px;
+                height: 42px;
+            }
+
+            .logo-text h1 {
+                font-size: 18px;
+            }
+
+            .menu-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            #chat-bubble {
+                right: 16px;
+                bottom: 16px;
+                width: 52px;
+                height: 52px;
+                font-size: 22px;
+            }
+
+            #chat-window {
+                width: calc(100vw - 32px);
+                right: 16px;
+                bottom: 84px;
+            }
+
+            .expense-block,
+            .main {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .footer {
+                padding: 24px 16px;
+            }
+        }
     </style>
-<link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 <body>
 
     <!-- PARTICLES -->
-<div class="particles">
-    <span style="left:10%; animation-delay:0s"></span>
-    <span style="left:30%; animation-delay:2s"></span>
-    <span style="left:50%; animation-delay:4s"></span>
-    <span style="left:70%; animation-delay:1s"></span>
-    <span style="left:90%; animation-delay:3s"></span>
-</div>
-
-<!-- NAVBAR -->
-<nav>
-    <a href="index.html" class="logo">
-        <img src="image/logo.png">
-        <div class="logo-text">
-            <h1>TripWise</h1>
-            <p>Split your expenses wisely</p>
-        </div>
-    </a>
-
-    <div class="nav-links">
-        <a href="index.html" ><i class="fa-solid fa-house"></i> Home</a>
-        <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
-        <a href="add_expense.html" class="active"><i class="fa-solid fa-wallet"></i> Expenses</a>
-        <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
-
-        <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
-
-        <a href="contact.html" class="contact-btn">
-            <i class="fa-solid fa-phone"></i> Contact Us
-        </a>
-
-        <a href="create_acc.html">
-            <i class="fa-solid fa-circle-user"></i> Profile
-        </a>
+    <div class="particles">
+        <span style="left:10%; animation-delay:0s"></span>
+        <span style="left:30%; animation-delay:2s"></span>
+        <span style="left:50%; animation-delay:4s"></span>
+        <span style="left:70%; animation-delay:1s"></span>
+        <span style="left:90%; animation-delay:3s"></span>
     </div>
 
-
-    <div class="menu-btn" onclick="toggleSidebar()">☰</div>
-</nav>
-
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-    <a href="index.html">Home</a>
-    <a href="create_trip.html">Create Trip</a>
-    <a href="add_expense.html">Expenses</a>
-    <a href="summary.html">Summary</a>
-    <a href="create_acc.html">Profile</a>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-    <center><h1>Add Expense</h1></center>
-
-    <!-- TOTAL EXPENSE -->
-    <label>Total Expense Amount</label>
-    <input type="number" placeholder="Enter total amount">
-
-    <!-- MEMBER NAMES -->
-     <!-- Dynamic member inputs will be generated here -->
-      <div id="memberNamesContainer"></div>
-    <label>Member Name 1</label>
-    <input type="text" placeholder="Enter member name">
-
-    <!-- EXPENSE 1 -->
-    <div class="expense-block">
-        <label>1. Description</label>
-        <select>
-    <option value="">Select Expense Type</option>
-    <option>🍽 Food & Dining</option>
-    <option>🚗 Travel / Transport</option>
-    <option>🏨 Hotel / Stay</option>
-    <option>🎟 Tickets / Entry Fees</option>
-    <option>🛍 Shopping</option>
-    <option>🎉 Entertainment</option>
-    <option>🚕 Cab / Auto</option>
-    <option>⛽ Fuel</option>
-    <option>📸 Activities / Adventures</option>
-    <option>💊 Emergency / Medical</option>
-    <option>📦 Others</option>
-</select>
-
-        <label>Paid By</label>
-        <input type="text" placeholder="Enter name">
-    </div>
-
-    <!-- EXPENSE 2 -->
-    <div class="expense-block">
-        <label>2. Description</label>
-        <select>
-    <option value="">Select Expense Type</option>
-    <option>🍽 Food & Dining</option>
-    <option>🚗 Travel / Transport</option>
-    <option>🏨 Hotel / Stay</option>
-    <option>🎟 Tickets / Entry Fees</option>
-    <option>🛍 Shopping</option>
-    <option>🎉 Entertainment</option>
-    <option>🚕 Cab / Auto</option>
-    <option>⛽ Fuel</option>
-    <option>📸 Activities / Adventures</option>
-    <option>💊 Emergency / Medical</option>
-    <option>📦 Others</option>
-</select>
-
-        <label>Paid By</label>
-        <input type="text" placeholder="Enter name">
-    </div>
-
-    <!-- EXPENSE 3 -->
-    <div class="expense-block">
-        <label>3. Description</label>
-       <select>
-    <option value="">Select Expense Type</option>
-    <option>🍽 Food & Dining</option>
-    <option>🚗 Travel / Transport</option>
-    <option>🏨 Hotel / Stay</option>
-    <option>🎟 Tickets / Entry Fees</option>
-    <option>🛍 Shopping</option>
-    <option>🎉 Entertainment</option>
-    <option>🚕 Cab / Auto</option>
-    <option>⛽ Fuel</option>
-    <option>📸 Activities / Adventures</option>
-    <option>💊 Emergency / Medical</option>
-    <option>📦 Others</option>
-</select>
-
-        <label>Paid By</label>
-        <input type="text" placeholder="Enter name">
-    </div>
-
-    <!-- EXPENSE 4 -->
-    <div class="expense-block">
-        <label>4. Description</label>
-        <select>
-    <option value="">Select Expense Type</option>
-    <option>🍽 Food & Dining</option>
-    <option>🚗 Travel / Transport</option>
-    <option>🏨 Hotel / Stay</option>
-    <option>🎟 Tickets / Entry Fees</option>
-    <option>🛍 Shopping</option>
-    <option>🎉 Entertainment</option>
-    <option>🚕 Cab / Auto</option>
-    <option>⛽ Fuel</option>
-    <option>📸 Activities / Adventures</option>
-    <option>💊 Emergency / Medical</option>
-    <option>📦 Others</option>
-</select>
-
-        <label>Paid By</label>
-        <input type="text" placeholder="Enter name">
-    </div>
-
-    <!-- MEMBER CARD (ONLY 1 FOR NOW) -->
-    <div class="members">
-        <h3 style="color:#14532d;">Split Among Members</h3>
-
-        <div class="card">
-            <div class="card-left">
-                <i class="fa-solid fa-user-circle"></i>
-                <span>Member Name 1</span>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="image/logo.png">
+            <div class="logo-text">
+                <h1>TripWise</h1>
+                <p>Split your expenses wisely</p>
             </div>
-            <input type="number" placeholder="₹">
-        </div>
-    </div>
+        </a>
 
-    <button onclick="location.href='summary.html'">Add Expense</button>
+        <div class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
+            <a href="add_expense.html" class="active"><i class="fa-solid fa-wallet"></i> Expenses</a>
+            <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-</div>
+            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
 
-<!-- FOOTER -->
-<footer class="footer">
-
-    <!-- CENTER -->
-    <div class="footer-center">
-        <h2>TripWise</h2>
-        <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
-    </div>
-<br>
-<br>
-<hr>
-<br>
-    <!-- BOTTOM -->
-    <div class="footer-bottom">
-
-        <!-- LEFT -->
-        <div class="footer-left">
-            <a href="aboutus.html">
-                <i class="fa-solid fa-circle-info"></i> About Us
-            </a>
-
-            <a href="contact.html">
+            <a href="contact.html" class="contact-btn">
                 <i class="fa-solid fa-phone"></i> Contact Us
             </a>
 
-            <a href="#">
-                <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
+            <a href="create_acc.html">
+                <i class="fa-solid fa-circle-user"></i> Profile
             </a>
         </div>
 
-        <!-- RIGHT -->
-        <div class="footer-right">
-            © 2026 TripWise | BS AICS Capstone Project
+
+        <div class="menu-btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="create_trip.html">Create Trip</a>
+        <a href="add_expense.html">Expenses</a>
+        <a href="summary.html">Summary</a>
+        <a href="create_acc.html">Profile</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <center>
+            <h1>Add Expense</h1>
+        </center>
+
+        <!-- TOTAL EXPENSE -->
+        <label>Total Expense Amount</label>
+        <input type="number" placeholder="Enter total amount">
+
+        <!-- MEMBER NAMES -->
+        <!-- Dynamic member inputs will be generated here -->
+        <div id="memberNamesContainer"></div>
+        <label>Member Name 1</label>
+        <input type="text" placeholder="Enter member name">
+
+        <!-- EXPENSE 1 -->
+        <div class="expense-block">
+            <label>1. Description</label>
+            <select>
+                <option value="">Select Expense Type</option>
+                <option>🍽 Food & Dining</option>
+                <option>🚗 Travel / Transport</option>
+                <option>🏨 Hotel / Stay</option>
+                <option>🎟 Tickets / Entry Fees</option>
+                <option>🛍 Shopping</option>
+                <option>🎉 Entertainment</option>
+                <option>🚕 Cab / Auto</option>
+                <option>⛽ Fuel</option>
+                <option>📸 Activities / Adventures</option>
+                <option>💊 Emergency / Medical</option>
+                <option>📦 Others</option>
+            </select>
+
+            <label>Paid By</label>
+            <input type="text" placeholder="Enter name">
         </div>
 
+        <!-- EXPENSE 2 -->
+        <div class="expense-block">
+            <label>2. Description</label>
+            <select>
+                <option value="">Select Expense Type</option>
+                <option>🍽 Food & Dining</option>
+                <option>🚗 Travel / Transport</option>
+                <option>🏨 Hotel / Stay</option>
+                <option>🎟 Tickets / Entry Fees</option>
+                <option>🛍 Shopping</option>
+                <option>🎉 Entertainment</option>
+                <option>🚕 Cab / Auto</option>
+                <option>⛽ Fuel</option>
+                <option>📸 Activities / Adventures</option>
+                <option>💊 Emergency / Medical</option>
+                <option>📦 Others</option>
+            </select>
+
+            <label>Paid By</label>
+            <input type="text" placeholder="Enter name">
+        </div>
+
+        <!-- EXPENSE 3 -->
+        <div class="expense-block">
+            <label>3. Description</label>
+            <select>
+                <option value="">Select Expense Type</option>
+                <option>🍽 Food & Dining</option>
+                <option>🚗 Travel / Transport</option>
+                <option>🏨 Hotel / Stay</option>
+                <option>🎟 Tickets / Entry Fees</option>
+                <option>🛍 Shopping</option>
+                <option>🎉 Entertainment</option>
+                <option>🚕 Cab / Auto</option>
+                <option>⛽ Fuel</option>
+                <option>📸 Activities / Adventures</option>
+                <option>💊 Emergency / Medical</option>
+                <option>📦 Others</option>
+            </select>
+
+            <label>Paid By</label>
+            <input type="text" placeholder="Enter name">
+        </div>
+
+        <!-- EXPENSE 4 -->
+        <div class="expense-block">
+            <label>4. Description</label>
+            <select>
+                <option value="">Select Expense Type</option>
+                <option>🍽 Food & Dining</option>
+                <option>🚗 Travel / Transport</option>
+                <option>🏨 Hotel / Stay</option>
+                <option>🎟 Tickets / Entry Fees</option>
+                <option>🛍 Shopping</option>
+                <option>🎉 Entertainment</option>
+                <option>🚕 Cab / Auto</option>
+                <option>⛽ Fuel</option>
+                <option>📸 Activities / Adventures</option>
+                <option>💊 Emergency / Medical</option>
+                <option>📦 Others</option>
+            </select>
+
+            <label>Paid By</label>
+            <input type="text" placeholder="Enter name">
+        </div>
+
+        <!-- MEMBER CARD (ONLY 1 FOR NOW) -->
+        <div class="members">
+            <h3 style="color:#14532d;">Split Among Members</h3>
+
+            <div class="card">
+                <div class="card-left">
+                    <i class="fa-solid fa-user-circle"></i>
+                    <span>Member Name 1</span>
+                </div>
+                <input type="number" placeholder="₹">
+            </div>
+        </div>
+
+        <button onclick="location.href='summary.html'">Add Expense</button>
+
     </div>
 
-</footer>
-<script>
-function toggleSidebar(){
-    document.getElementById("sidebar").classList.toggle("active");
-}
-</script>
-<!-- TRIPWISE AI CHAT BUBBLE -->
-<div id="chat-bubble" onclick="toggleChat()">
-    <i class="fa-solid fa-robot"></i>
-</div>
+    <!-- FOOTER -->
+    <footer class="footer">
 
-<div id="chat-window">
-    <div id="chat-header">
-        <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
-        <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
-    </div>
-    <div id="chat-messages">
-        <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
-    </div>
-    <div id="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Ask something..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
-</div>
+        <!-- CENTER -->
+        <div class="footer-center">
+            <h2>TripWise</h2>
+            <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <!-- BOTTOM -->
+        <div class="footer-bottom">
 
-<style>
-#chat-bubble{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;color:white;cursor:pointer;box-shadow:0 4px 20px rgba(34,197,94,0.5);z-index:9999;transition:transform 0.3s;}
-#chat-bubble:hover{transform:scale(1.1);}
-#chat-window{display:none;position:fixed;bottom:100px;right:30px;width:340px;height:460px;background:white;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.15);z-index:9998;flex-direction:column;overflow:hidden;}
-#chat-window.open{display:flex;}
-#chat-header{background:#14532d;color:white;padding:14px 18px;font-size:16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
-#chat-messages{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;}
-.bot-msg{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d;padding:10px 14px;border-radius:14px 14px 14px 0;font-size:14px;max-width:85%;line-height:1.5;}
-.user-msg{background:#22c55e;color:white;padding:10px 14px;border-radius:14px 14px 0 14px;font-size:14px;max-width:85%;align-self:flex-end;}
-.thinking-msg{background:#f3f4f6;color:#6b7280;padding:10px 14px;border-radius:14px;font-size:13px;font-style:italic;}
-#chat-input-area{display:flex;padding:12px;border-top:1px solid #e5e7eb;gap:8px;}
-#chat-input{flex:1;padding:10px 14px;border:1px solid #d1d5db;border-radius:20px;font-size:14px;outline:none;}
-#chat-input:focus{border-color:#22c55e;}
-#chat-input-area button{background:#22c55e;color:white;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:15px;margin-top:0;padding:0;display:flex;align-items:center;justify-content:center;}
-</style>
+            <!-- LEFT -->
+            <div class="footer-left">
+                <a href="aboutus.html">
+                    <i class="fa-solid fa-circle-info"></i> About Us
+                </a>
 
-<script>
-function toggleChat(){
-    document.getElementById('chat-window').classList.toggle('open');
-}
-async function sendMessage(){
-    const input=document.getElementById('chat-input');
-    const messages=document.getElementById('chat-messages');
-    const userText=input.value.trim();
-    if(!userText) return;
-    messages.innerHTML+=`<div class="user-msg">${userText}</div>`;
-    input.value='';
-    messages.innerHTML+=`<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
-    messages.scrollTop=messages.scrollHeight;
-    try{
-        const response=await fetch('http://127.0.0.1:8000/api/chatbot/',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({message:userText})
-        });
-        const data=await response.json();
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">${data.reply}</div>`;
-    }catch(error){
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">⚠️ Could not connect.?</div>`;
-    }
-    messages.scrollTop=messages.scrollHeight;
-}
-</script>
-<script src="js/script.js"></script>
+                <a href="contact.html">
+                    <i class="fa-solid fa-phone"></i> Contact Us
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
+                </a>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="footer-right">
+                © 2026 TripWise | BS AICS Capstone Project
+            </div>
+
+        </div>
+
+    </footer>
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+    <!-- TRIPWISE AI CHAT BUBBLE -->
+    <div id="chat-bubble" onclick="toggleChat()">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div id="chat-window">
+        <div id="chat-header">
+            <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
+            <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+        </div>
+        <div id="chat-messages">
+            <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask something..."
+                onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <style>
+        #chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.5);
+            z-index: 9999;
+            transition: transform 0.3s;
+        }
+
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-window {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: min(340px, calc(100vw - 40px));
+            max-width: calc(100vw - 40px);
+            height: 460px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            z-index: 9998;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #chat-window.open {
+            display: flex;
+        }
+
+        #chat-header {
+            background: #14532d;
+            color: white;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bot-msg {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            padding: 10px 14px;
+            border-radius: 14px 14px 14px 0;
+            font-size: 14px;
+            max-width: 85%;
+            line-height: 1.5;
+        }
+
+        .user-msg {
+            background: #22c55e;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 14px 14px 0 14px;
+            font-size: 14px;
+            max-width: 85%;
+            align-self: flex-end;
+        }
+
+        .thinking-msg {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        #chat-input-area {
+            display: flex;
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            gap: 8px;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #chat-input:focus {
+            border-color: #22c55e;
+        }
+
+        #chat-input-area button {
+            background: #22c55e;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        function toggleChat() {
+            document.getElementById('chat-window').classList.toggle('open');
+        }
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const userText = input.value.trim();
+            if (!userText) return;
+            messages.innerHTML += `<div class="user-msg">${userText}</div>`;
+            input.value = '';
+            messages.innerHTML += `<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
+            messages.scrollTop = messages.scrollHeight;
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/chatbot/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userText })
+                });
+                const data = await response.json();
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">${data.reply}</div>`;
+            } catch (error) {
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">⚠️ Could not connect.?</div>`;
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

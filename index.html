@@ -1,751 +1,796 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>TripWise - Home</title>
+    <title>TripWise - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" type="image/png" href="image/logo.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="image/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-<style>
-html, body{
-    margin:0;
-    padding:0;
-    overflow-x:hidden;
-}
-
-*{
-    box-sizing:border-box;
-    font-family:'Segoe UI', sans-serif;
-}
-
-body{
-    background:#f3f4f6;
-    position:relative;
-}
-
-/* 🌿 BLUR BACKGROUND */
-body::before, body::after{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    filter:blur(140px);
-    z-index:-2;
-    animation:float 14s infinite alternate ease-in-out;
-}
-
-body::before{
-    background:#22c55e;
-    top:80px;
-    left:80px;
-}
-
-body::after{
-    background:#14532d;
-    bottom:80px;
-    right:80px;
-}
-
-@keyframes float{
-    0%{transform:translate(0,0);}
-    100%{transform:translate(80px,-60px);}
-}
-
-/* ✨ FLOATING PARTICLES */
-.particles span{
-    position:fixed;
-    width:6px;
-    height:6px;
-    background:#22c55e;
-    border-radius:50%;
-    opacity:0.4;
-    animation:move 10s linear infinite;
-    z-index:-1;
-}
-
-@keyframes move{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh);}
-}
-
-
-/* NAVBAR */
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    left:0;
-    right:0;
-    background:#14532d;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 30px;
-    z-index:1000;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-decoration: none;
-}
-
-.logo img{
-    width: 55px;
-    height: 55px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.logo-text h1{
-    color:white;
-    font-size:22px;
-    margin:0;
-}
-
-.logo-text p{
-    color:#d1d5db;
-    font-size:13px;
-    margin:0;
-}
-
-.nav-links{
-    display:flex;
-    gap:22px;
-    align-items:center;
-}
-
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    transition:0.3s;
-    font-size:18px;
-    font-weight:500;
-}
-
-/* ✨ NEON HOVER */
-.nav-links a:hover,
-.nav-links a.active{
-    color:#22c55e;
-    text-shadow:0 0 8px #22c55e,0 0 15px #22c55e;
-}
-
-/* CONTACT BUTTON */
-.contact-btn{
-    background:#22c55e;
-    padding:8px 16px;
-    border-radius:20px;
-    font-weight:600;
-}
-
-.contact-btn:hover{
-    background:#16a34a;
-    text-shadow:none;
-}
-
-.menu-btn{
-    color:white;
-    font-size:30px;
-    cursor:pointer;
-}
-
-/* SIDEBAR */
-.sidebar{
-    position:fixed;
-    top:0;
-    right:-280px;
-    width:280px;
-    height:100%;
-    background:#14532d;
-    padding-top:90px;
-    transition:0.4s;
-     z-index:999;
-            box-shadow:-4px 0 15px rgba(0,0,0,0.3);
-}
-
-.sidebar.active{
-    right:0;
-}
-
-.sidebar a{
-    display:block;
-    color:white;
-    padding:22px 30px;
-    text-decoration:none;
-    font-size:28px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-            transition:0.3s;
-}
-
-.sidebar a:hover{
-    background:#1c6b3a;
-     padding-left:40px;
-}
-
-/* MAIN */
-.main{
-    max-width:1200px;
-    margin:120px auto 40px;
-    padding:0 20px;
-}
-
-/* HERO */
-.hero{
-    background:white;
-    border-radius:20px;
-     box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    padding:50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:40px;
-}
- .hero-text{
-            width:55%;
-    display:flex;
-    flex-direction:column;
-
-        }
-.hero-text h2{
-     font-size:64px;
-            line-height:1.1;
-            margin-bottom:20px;
-}
-
-.hero-text span{
-    color:#22c55e;
-}
-
-.hero-text p{
-   font-size:26px;
-            color:#374151;
-            margin-bottom:30px;
-            line-height:1.5;
-}
- .buttons{
-            display:flex;
-            gap:18px;
-        }
-.buttons button{
-    padding:14px 28px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:18px;
-            font-weight:600;
-            transition:0.3s;
-}
-
-.primary-btn{
-    background:#22c55e;
-    color:white;
-}
- .primary-btn:hover{
-            background:#16a34a;
-            transform:translateY(-2px);
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
-.secondary-btn{
-     background:white;
-            color:#14532d;
-            border:2px solid #d1d5db !important;
-   
-}
- .secondary-btn:hover{
-            background:#f3f4f6;
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
-       
-       
-        .hero-text{
-    width:55%;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start; /* ✅ keeps everything left */
-}
 
-.trust-wrapper{
-    margin-top:auto;   /* pushes it to bottom */
-    padding-top:20px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-/* Profile container */
-.trust-users{
-    display:flex;
-}
+        body {
+            background: #f3f4f6;
+            position: relative;
+        }
 
-/* Each circle */
-.user{
-    width:32px;
-    height:32px;
-    border-radius:50%;
-   display: flex;
-    align-items:center;
-    justify-content:center;
-    font-size:14px;
-    font-weight:bold;
-    color:white;
-    border:2px solid white;
-    margin-left:-10px; /* overlap effect */
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
+        /* 🌿 BLUR BACKGROUND */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -2;
+            animation: float 14s infinite alternate ease-in-out;
+        }
 
-/* First one no overlap */
-.user:first-child{
-    margin-left:0;
-}
+        body::before {
+            background: #22c55e;
+            top: 80px;
+            left: 80px;
+        }
 
-.trust-wrapper{
-    margin-top:15px;
-    
-    align-items:center;
-    gap:10px;
-}
-.cta-section{
-    display:flex;
-    flex-direction:column; /* 👈 forces vertical layout */
-    align-items:flex-start; 
-    gap:10px;
-}
+        body::after {
+            background: #14532d;
+            bottom: 80px;
+            right: 80px;
+        }
 
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
 
-/* Gradient colors */
-.u1{background:linear-gradient(135deg,#ec4899,#8b5cf6);}
-.u2{background:linear-gradient(135deg,#3b82f6,#06b6d4);}
-.u3{background:linear-gradient(135deg,#22c55e,#16a34a);}
-.u4{background:linear-gradient(135deg,#f59e0b,#ef4444);}
-.u5{background:linear-gradient(135deg,#6366f1,#9333ea);}
+            100% {
+                transform: translate(80px, -60px);
+            }
+        }
 
-/* Text */
-.trust-text{
-    font-size:14px;
-    color:#6b7280;
-}
+        /* ✨ FLOATING PARTICLES */
+        .particles span {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: move 10s linear infinite;
+            z-index: -1;
+        }
 
-/* Highlight number */
-.trust-text b{
-    color:#22c55e;
-}
+        @keyframes move {
+            from {
+                transform: translateY(100vh);
+            }
 
-
-
- .hero-image img{
-            width:420px;
-            height:300px;
+            to {
+                transform: translateY(-10vh);
+            }
         }
 
 
- .features{
-            margin-top:35px;
-            background:white;
-            border-radius:20px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
-            padding:35px 20px;
-            display:flex;
-            justify-content:space-around;
-            text-align:center;
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            left: 0;
+            right: 0;
+            background: #14532d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            z-index: 1000;
         }
 
-        .feature{
-            width:30%;
-            padding:10px 20px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .feature i{
-            font-size:42px;
-            color:#22c55e;
-            margin-bottom:18px;
+        .logo img {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
-        .feature h3{
-            font-size:34px;
-            margin-bottom:12px;
+        .logo-text h1 {
+            color: white;
+            font-size: 22px;
+            margin: 0;
         }
 
-        .feature p{
-            color:#4b5563;
-            font-size:20px;
-            line-height:1.5;
+        .logo-text p {
+            color: #d1d5db;
+            font-size: 13px;
+            margin: 0;
         }
 
- .welcome{
-            margin-top:35px;
-            background:white;
-            border-radius:20px;
-            padding:35px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
         }
 
-        .welcome h2{
-            font-size:42px;
-            margin-bottom:15px;
-            color:#14532d;
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+            font-size: 18px;
+            font-weight: 500;
         }
 
-        .welcome p{
-            font-size:22px;
-            line-height:1.8;
-            color:#374151;
-        }
- .destination-section{
-            margin-top:40px;
+        /* ✨ NEON HOVER */
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #22c55e;
+            text-shadow: 0 0 8px #22c55e, 0 0 15px #22c55e;
         }
 
-        .destination-section h2{
-            text-align:center;
-            font-size:42px;
-            margin-bottom:25px;
-            color:#14532d;
+        /* CONTACT BUTTON */
+        .contact-btn {
+            background: #22c55e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
         }
 
-        .destinations{
-            display:flex;
-            gap:20px;
-            justify-content:center;
-            flex-wrap:wrap;
-        }
-        
-       
-        .card{
-            background:white;
-            border-radius:18px;
-            overflow:hidden;
-            width:250px;
-            box-shadow:0 8px 20px rgba(0,0,0,0.08);
-            transition:0.3s;
-            cursor:pointer;
+        .contact-btn:hover {
+            background: #16a34a;
+            text-shadow: none;
         }
 
-        .card:hover{
-            transform:scale(1.08);
+        .menu-btn {
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
         }
 
-        .card img{
-            width:100%;
-            height:160px;
-            object-fit:cover;
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: #14532d;
+            padding-top: 90px;
+            transition: 0.4s;
+            z-index: 999;
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
         }
 
-        .card h3{
-            text-align:center;
-            padding:18px;
-            font-size:28px;
-            color:#111827;
+        .sidebar.active {
+            right: 0;
         }
 
-        .why-tripwise{
-    width: 80%;
-    max-width: 900px;
-    margin: 40px auto;
-    background: white;
-    border-radius: 18px;
-    padding: 35px 45px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    text-align: left;
-}
-.why-section{
-    margin-top:60px;
-    text-align:center;
-}
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 22px 30px;
+            text-decoration: none;
+            font-size: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
 
-.why-section h2{
-    font-size:38px;
-    color:#14532d;
-    margin-bottom:30px;
-}
+        .sidebar a:hover {
+            background: #1c6b3a;
+            padding-left: 40px;
+        }
 
-/* Grid layout */
-.why-container{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:25px;
-}
+        /* MAIN */
+        .main {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 0 20px;
+        }
 
-/* Card */
-.why-card{
-    width:260px;
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-    transition:0.3s;
-}
+        /* HERO */
+        .hero {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
 
-.why-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 20px 40px rgba(34,197,94,0.25);
-}
+        .hero-text {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
 
-.why-card i{
-    font-size:40px;
-    color:#22c55e;
-    margin-bottom:15px;
-}
+        }
 
-.why-card h3{
-    font-size:22px;
-    margin-bottom:10px;
-}
+        .hero-text h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
 
-.why-card p{
-    font-size:15px;
-    color:#4b5563;
-}
+        .hero-text span {
+            color: #22c55e;
+        }
 
-.feedback-section{
-    margin-top:50px;
-    padding:30px;
-    background:rgba(255,255,255,0.6);
-    backdrop-filter:blur(10px);
-    border-radius:20px;
-}
+        .hero-text p {
+            font-size: 26px;
+            color: #374151;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
 
-.feedback-title{
-    text-align:center;
-    font-size:36px;
-    color:#14532d;
-    margin-bottom:25px;
-}
+        .buttons {
+            display: flex;
+            gap: 18px;
+        }
+
+        .buttons button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #22c55e;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #14532d;
+            border: 2px solid #d1d5db !important;
+
+        }
+
+        .secondary-btn:hover {
+            background: #f3f4f6;
+        }
 
 
-/* Horizontal Scroll */
-.feedback-container{
-    display:flex;
-    gap:20px;
-    overflow-x:auto;
-    padding:10px;
+        .hero-text {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* ✅ keeps everything left */
+        }
 
-}
-/* AVATAR BASE */
-.avatar{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:26px;
-    color:white;
-    margin:auto;
-    margin-bottom:10px;
-    font-weight:bold;
-    position:relative;
-    overflow:hidden;
-}
+        .trust-wrapper {
+            margin-top: auto;
+            /* pushes it to bottom */
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-/* GLOW BORDER EFFECT */
-.avatar::before{
-    content:"";
-    position:absolute;
-    inset:-3px;
-    border-radius:50%;
-    background:linear-gradient(45deg,#22c55e,#3b82f6,#ec4899,#22c55e);
-    z-index:-1;
-    filter:blur(6px);
-}
+        /* Profile container */
+        .trust-users {
+            display: flex;
+        }
 
-/* SHINE ANIMATION */
-.avatar::after{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
-    transform:translateX(-100%);
-    
-}
+        /* Each circle */
+        .user {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            border: 2px solid white;
+            margin-left: -10px;
+            /* overlap effect */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-@keyframes shine{
-    100%{transform:translateX(100%);}
-}
+        /* First one no overlap */
+        .user:first-child {
+            margin-left: 0;
+        }
 
-/* UNIQUE GRADIENTS */
-.meghna{
-    background:linear-gradient(135deg,#ec4899,#8b5cf6,#6366f1);
-}
+        .trust-wrapper {
+            margin-top: 15px;
 
-.halil{
-    background:linear-gradient(135deg,#3b82f6,#22c55e);
-}
+            align-items: center;
+            gap: 10px;
+        }
 
-.manasvi{
-    background:linear-gradient(135deg,#f59e0b,#ef4444);
-}
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            /* 👈 forces vertical layout */
+            align-items: flex-start;
+            gap: 10px;
+        }
 
-.rishabh{
-    background:linear-gradient(135deg,#06b6d4,#3b82f6);
-}
 
-.atish{
-    background:linear-gradient(135deg,#22c55e,#4ade80);
-}
+        /* Gradient colors */
+        .u1 {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+        }
 
-/* Hide scrollbar (optional) */
-.feedback-container::-webkit-scrollbar{
-    display:none;
-}
+        .u2 {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
 
-/* Cards */
-.feedback-card{
-    min-width:280px;
-    background:white;
-    padding:20px;
-    border-radius:16px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.1);
-    transition:0.3s;
-    cursor:pointer;
-}
+        .u3 {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
 
-/* Hover popup effect */
-.feedback-card:hover{
-    transform:translateY(-10px) scale(1.05);
-    box-shadow:0 20px 40px rgba(34,197,94,0.3);
-}
+        .u4 {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+        }
 
-.feedback-card p{
-    font-size:16px;
-    color:#374151;
-    margin-bottom:15px;
-}
+        .u5 {
+            background: linear-gradient(135deg, #6366f1, #9333ea);
+        }
 
-.feedback-card h4{
-    color:#22c55e;
-}
-/* FOOTER */
-.footer{
-    background:#14532d;
-    color:white;
-    padding:30px 40px 20px;
-}
+        /* Text */
+        .trust-text {
+            font-size: 14px;
+            color: #6b7280;
+        }
 
-/* CENTER TEXT */
-.footer-center{
-    text-align:center;
-    margin-bottom:15px;
-}
+        /* Highlight number */
+        .trust-text b {
+            color: #22c55e;
+        }
 
-.footer-center h2{
-    margin:0;
-    font-size:26px;
-}
 
-.footer-center p{
-    margin-top:5px;
-    color:#d1d5db;
-}
 
-/* BOTTOM ROW */
-.footer-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-}
+        .hero-image img {
+            width: 420px;
+            height: 300px;
+        }
 
-/* LEFT LINKS */
-.footer-left{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
 
-.footer-left a{
-    color:white;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
+        .features {
+            margin-top: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 35px 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
 
-.footer-left a:hover{
-    color:#22c55e;
-}
+        .feature {
+            width: 30%;
+            padding: 10px 20px;
+        }
 
-/* RIGHT TEXT */
-.footer-right{
-    font-size:14px;
-    color:#d1d5db;
-}
+        .feature i {
+            font-size: 42px;
+            color: #22c55e;
+            margin-bottom: 18px;
+        }
 
-/* MOBILE RESPONSIVE */
-@media(max-width:768px){
-    .footer-bottom{
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-    }
-}
- 
-</style>
-<link rel="stylesheet" href="css/responsive.css">
+        .feature h3 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            color: #4b5563;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .welcome {
+            margin-top: 35px;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .welcome h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #14532d;
+        }
+
+        .welcome p {
+            font-size: 22px;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .destination-section {
+            margin-top: 40px;
+        }
+
+        .destination-section h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 25px;
+            color: #14532d;
+        }
+
+        .destinations {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            width: 250px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.08);
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            text-align: center;
+            padding: 18px;
+            font-size: 28px;
+            color: #111827;
+        }
+
+        .why-tripwise {
+            width: 80%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 35px 45px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+
+        .why-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .why-section h2 {
+            font-size: 38px;
+            color: #14532d;
+            margin-bottom: 30px;
+        }
+
+        /* Grid layout */
+        .why-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        /* Card */
+        .why-card {
+            width: 260px;
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.25);
+        }
+
+        .why-card i {
+            font-size: 40px;
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+
+        .why-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .why-card p {
+            font-size: 15px;
+            color: #4b5563;
+        }
+
+        .feedback-section {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+        }
+
+        .feedback-title {
+            text-align: center;
+            font-size: 36px;
+            color: #14532d;
+            margin-bottom: 25px;
+        }
+
+
+        /* Horizontal Scroll */
+        .feedback-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px;
+
+        }
+
+        /* AVATAR BASE */
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            margin: auto;
+            margin-bottom: 10px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* GLOW BORDER EFFECT */
+        .avatar::before {
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #22c55e, #3b82f6, #ec4899, #22c55e);
+            z-index: -1;
+            filter: blur(6px);
+        }
+
+        /* SHINE ANIMATION */
+        .avatar::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: translateX(-100%);
+
+        }
+
+        @keyframes shine {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* UNIQUE GRADIENTS */
+        .meghna {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #6366f1);
+        }
+
+        .halil {
+            background: linear-gradient(135deg, #3b82f6, #22c55e);
+        }
+
+        .manasvi {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+        }
+
+        .rishabh {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+        }
+
+        .atish {
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+        }
+
+        /* Hide scrollbar (optional) */
+        .feedback-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Cards */
+        .feedback-card {
+            min-width: 280px;
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        /* Hover popup effect */
+        .feedback-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .feedback-card p {
+            font-size: 16px;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+
+        .feedback-card h4 {
+            color: #22c55e;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #14532d;
+            color: white;
+            padding: 30px 40px 20px;
+        }
+
+        /* CENTER TEXT */
+        .footer-center {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-center h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .footer-center p {
+            margin-top: 5px;
+            color: #d1d5db;
+        }
+
+        /* BOTTOM ROW */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT LINKS */
+        .footer-left {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-left a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-left a:hover {
+            color: #22c55e;
+        }
+
+        /* RIGHT TEXT */
+        .footer-right {
+            font-size: 14px;
+            color: #d1d5db;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media(max-width:768px) {
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
 
-<!-- PARTICLES -->
-<div class="particles">
-    <span style="left:10%; animation-delay:0s"></span>
-    <span style="left:30%; animation-delay:2s"></span>
-    <span style="left:50%; animation-delay:4s"></span>
-    <span style="left:70%; animation-delay:1s"></span>
-    <span style="left:90%; animation-delay:3s"></span>
-</div>
+    <!-- PARTICLES -->
+    <div class="particles">
+        <span style="left:10%; animation-delay:0s"></span>
+        <span style="left:30%; animation-delay:2s"></span>
+        <span style="left:50%; animation-delay:4s"></span>
+        <span style="left:70%; animation-delay:1s"></span>
+        <span style="left:90%; animation-delay:3s"></span>
+    </div>
 
 
 
-<!-- NAVBAR -->
-<nav>
-    <a href="index.html" class="logo">
-        <img src="image/logo.png" alt="TripWise Logo">
-        <div class="logo-text">
-            <h1>TripWise</h1>
-            <p>Split your expenses wisely</p>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="image/logo.png" alt="TripWise Logo">
+            <div class="logo-text">
+                <h1>TripWise</h1>
+                <p>Split your expenses wisely</p>
+            </div>
+        </a>
+
+
+        <div class="nav-links">
+            <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
+            <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
+            <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
+
+            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
+            <a href="contact.html" class="contact-btn">
+                <i class="fa-solid fa-phone"></i> Contact Us
+            </a>
+
+            <a href="create_acc.html">
+                <i class="fa-solid fa-circle-user"></i> Profile
+            </a>
         </div>
-        </a>
-    
 
-    <div class="nav-links">
-        <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
-        <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
-        <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
+        <div class="menu-btn" onclick="openSidebar()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
 
-        <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
-
-        <a href="contact.html" class="contact-btn">
-            <i class="fa-solid fa-phone"></i> Contact Us
-        </a>
-
-        <a href="create_acc.html">
-            <i class="fa-solid fa-circle-user"></i> Profile
-        </a>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="create_trip.html">Create Trip</a>
+        <a href="add_expense.html">Expenses</a>
+        <a href="summary.html">Summary</a>
+        <a href="aboutus.html">About</a>
     </div>
 
-    <div class="menu-btn" onclick="openSidebar()">
-        <i class="fa-solid fa-bars"></i>
-    </div>
-</nav>
+    <!-- MAIN -->
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-    <a href="index.html">Home</a>
-    <a href="create_trip.html">Create Trip</a>
-    <a href="add_expense.html">Expenses</a>
-    <a href="summary.html">Summary</a>
-    <a href="aboutus.html">About</a>
-</div>
-
-<!-- MAIN -->
-
-<div class="main">
+    <div class="main">
 
         <!-- Hero Section -->
         <div class="hero">
@@ -755,7 +800,7 @@ nav{
                 <p>
                     Manage group trips, track expenses, and settle balances easily with TripWise.
                 </p>
-<br>
+                <br>
                 <div class="buttons">
                     <button class="primary-btn" onclick="window.location.href='login.html'">Get Started →</button>
                     <button class="secondary-btn" onclick="window.location.href='aboutus.html'">Learn More →</button>
@@ -763,27 +808,27 @@ nav{
             </div>
             <div class="trust-wrapper">
 
-    
 
-    <!-- Profile Icons -->
-    <div class="trust-users">
-        <div class="user u1">M</div>
-        <div class="user u2">H</div>
-        <div class="user u3">M</div>
-        <div class="user u4">R</div>
-        <div class="user u5">A</div>
-    </div>
 
-    <!-- Text -->
-    <p class="trust-text">
-        Joined by <b>10,000+</b> travelers
-    </p>
+                <!-- Profile Icons -->
+                <div class="trust-users">
+                    <div class="user u1">M</div>
+                    <div class="user u2">H</div>
+                    <div class="user u3">M</div>
+                    <div class="user u4">R</div>
+                    <div class="user u5">A</div>
+                </div>
 
-</div>
+                <!-- Text -->
+                <p class="trust-text">
+                    Joined by <b>10,000+</b> travelers
+                </p>
+
+            </div>
 
 
             <div class="hero-image">
-                <img src="image/travel.png" alt="TripWise Illustration"  width="500" height="300">
+                <img src="image/travel.png" alt="TripWise Illustration" width="500" height="300">
             </div>
         </div>
 
@@ -823,42 +868,42 @@ nav{
             <h2>Popular Destinations</h2>
 
             <div class="destinations">
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/goa.jpg" alt="Goa">
                     <h3>Goa</h3>
                 </div>
 
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/manali.jpg" alt="Manali">
                     <h3>Manali</h3>
                 </div>
 
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/jaipur.jpg" alt="Jaipur">
                     <h3>Jaipur</h3>
                 </div>
 
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/kerala.jpg" alt="Kerala">
                     <h3>Kerala</h3>
                 </div>
 
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/ladakh.jpg" alt="Ladakh">
                     <h3>Ladakh</h3>
                 </div>
 
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/tajmahal.jpg" alt="Taj Mahal">
                     <h3>Taj Mahal</h3>
                 </div>
 
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/rishikesh.jpg" alt="Rishikesh">
                     <h3>Rishikesh</h3>
                 </div>
 
-                <div class="card"  data-aos="zoom-in">
+                <div class="card" data-aos="zoom-in">
                     <img src="image/dalhousie.jpg" alt="Dalhousie">
                     <h3>Dalhousie</h3>
                 </div>
@@ -867,221 +912,347 @@ nav{
 
     </div>
 
-    
 
-<div class="why-section">
-    <h2>💚 Why Choose TripWise?</h2>
 
-    <div class="why-container">
+    <div class="why-section">
+        <h2>💚 Why Choose TripWise?</h2>
 
-        <div class="why-card">
-            <i class="fa-solid fa-calculator"></i>
-            <h3>No Manual Calculations</h3>
-            <p>Automatically split expenses without doing any math.</p>
+        <div class="why-container">
+
+            <div class="why-card">
+                <i class="fa-solid fa-calculator"></i>
+                <h3>No Manual Calculations</h3>
+                <p>Automatically split expenses without doing any math.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fa-solid fa-users"></i>
+                <h3>Easy to Use</h3>
+                <p>Perfect for friends, college trips, and family vacations.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fa-solid fa-clock"></i>
+                <h3>Saves Time</h3>
+                <p>No confusion or long calculations — everything is instant.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Clear Summary</h3>
+                <p>See who owes whom with a clean and simple interface.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fa-solid fa-shield-heart"></i>
+                <h3>Stress-Free Trips</h3>
+                <p>Focus on memories, not money problems.</p>
+            </div>
+
         </div>
-
-        <div class="why-card">
-            <i class="fa-solid fa-users"></i>
-            <h3>Easy to Use</h3>
-            <p>Perfect for friends, college trips, and family vacations.</p>
-        </div>
-
-        <div class="why-card">
-            <i class="fa-solid fa-clock"></i>
-            <h3>Saves Time</h3>
-            <p>No confusion or long calculations — everything is instant.</p>
-        </div>
-
-        <div class="why-card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>Clear Summary</h3>
-            <p>See who owes whom with a clean and simple interface.</p>
-        </div>
-
-        <div class="why-card">
-            <i class="fa-solid fa-shield-heart"></i>
-            <h3>Stress-Free Trips</h3>
-            <p>Focus on memories, not money problems.</p>
-        </div>
-
-    </div>
-</div>
-
-
-<div class="feedback-section">
-
-    <h2 class="feedback-title">💬 Users Feedback</h2>
-
-    <div class="feedback-container">
-
-
-        <!-- Cards here -->
-        
-        <!-- Paste all feedback cards from above -->
-         <div class="feedback-card">
-            <div class="avatar meghna">M</div>
-             <center><h4>  Meghna Srivastava</h4></center>
-             <div class="stars">★★★★★</div>
-    <p>"TripWise made our Goa trip stress-free! No confusion about who paid what — everything was clear and instant."</p>
-   
-</div>
-
-<div class="feedback-card">
-   <div class="avatar halil">H</div>
-      <center><h4>  Halil</h4></center>
-       <div class="stars">★★★★★</div>
-    <p>"Earlier we used notes and calculators, now TripWise handles everything. The summary feature is a lifesaver!"</p>
-</div>
-
-<div class="feedback-card">
-   <div class="avatar manasvi">M</div>
-    <center><h4>  Manasvi Jain</h4></center>
-     <div class="stars">★★★★★</div>
-    <p>"Splitting expenses with friends has never been this easy. Clean UI and super smooth experience!"</p>
-    
-</div>
-
-<div class="feedback-card">
-    <div class="avatar rishabh">R</div>
-     <center><h4>  Rishabh Srivastava</h4></center>
-     <div class="stars">★★★★★</div>
-    <p>"The balance tracking is amazing! No awkward conversations anymore after trips 😄"</p>
-    
-</div>
-
-<div class="feedback-card">
-   <div class="avatar atish">A</div>
-     <center><h4>  Atish Kumar</h4></center>
-     <div class="stars">★★★★★</div>
-    <p>"TripWise helped us manage our college trip expenses perfectly. Highly recommended!"</p>
-   
-    </div>
-    
-</div>
-
     </div>
 
-</div>
 
-<!-- FOOTER -->
+    <div class="feedback-section">
 
-<footer class="footer">
+        <h2 class="feedback-title">💬 Users Feedback</h2>
 
-    <!-- CENTER TAGLINE -->
-    <div class="footer-center">
-        <h2>TripWise</h2>
-        <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
-    </div>
-<br>
-<br>
-<hr style="border-color:#1c6b3a; margin:20px 0;">
-<br>
-    <!-- BOTTOM ROW -->
-    <div class="footer-bottom">
+        <div class="feedback-container">
 
-        <!-- LEFT -->
-        <div class="footer-left">
-            <a href="aboutus.html">
-                <i class="fa-solid fa-circle-info"></i> About Us
-            </a>
 
-            <a href="contact.html">
-                <i class="fa-solid fa-phone"></i> Contact Us
-            </a>
+            <!-- Cards here -->
 
-            <a href="#">
-                <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
-            </a>
-        </div>
+            <!-- Paste all feedback cards from above -->
+            <div class="feedback-card">
+                <div class="avatar meghna">M</div>
+                <center>
+                    <h4> Meghna Srivastava</h4>
+                </center>
+                <div class="stars">★★★★★</div>
+                <p>"TripWise made our Goa trip stress-free! No confusion about who paid what — everything was clear and
+                    instant."</p>
 
-        <!-- RIGHT -->
-        <div class="footer-right">
-            © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+            </div>
+
+            <div class="feedback-card">
+                <div class="avatar halil">H</div>
+                <center>
+                    <h4> Halil</h4>
+                </center>
+                <div class="stars">★★★★★</div>
+                <p>"Earlier we used notes and calculators, now TripWise handles everything. The summary feature is a
+                    lifesaver!"</p>
+            </div>
+
+            <div class="feedback-card">
+                <div class="avatar manasvi">M</div>
+                <center>
+                    <h4> Manasvi Jain</h4>
+                </center>
+                <div class="stars">★★★★★</div>
+                <p>"Splitting expenses with friends has never been this easy. Clean UI and super smooth experience!"</p>
+
+            </div>
+
+            <div class="feedback-card">
+                <div class="avatar rishabh">R</div>
+                <center>
+                    <h4> Rishabh Srivastava</h4>
+                </center>
+                <div class="stars">★★★★★</div>
+                <p>"The balance tracking is amazing! No awkward conversations anymore after trips 😄"</p>
+
+            </div>
+
+            <div class="feedback-card">
+                <div class="avatar atish">A</div>
+                <center>
+                    <h4> Atish Kumar</h4>
+                </center>
+                <div class="stars">★★★★★</div>
+                <p>"TripWise helped us manage our college trip expenses perfectly. Highly recommended!"</p>
+
+            </div>
+
         </div>
 
     </div>
 
-</footer>
-<script>
-function openSidebar(){
-    document.getElementById("sidebar").classList.toggle("active");
-}
-</script>
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<script>
-  AOS.init({
-    duration: 1000,  // animation speed
-    once: true       // animate only once
-  });
-</script>
-<!-- TRIPWISE AI CHAT BUBBLE -->
-<div id="chat-bubble" onclick="toggleChat()">
-    <i class="fa-solid fa-robot"></i>
-</div>
-
-<div id="chat-window">
-    <div id="chat-header">
-        <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
-        <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
     </div>
-    <div id="chat-messages">
-        <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
-    </div>
-    <div id="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Ask something..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
-</div>
 
-<style>
-#chat-bubble{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;color:white;cursor:pointer;box-shadow:0 4px 20px rgba(34,197,94,0.5);z-index:9999;transition:transform 0.3s;}
-#chat-bubble:hover{transform:scale(1.1);}
-#chat-window{display:none;position:fixed;bottom:100px;right:30px;width:340px;height:460px;background:white;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.15);z-index:9998;flex-direction:column;overflow:hidden;}
-#chat-window.open{display:flex;}
-#chat-header{background:#14532d;color:white;padding:14px 18px;font-size:16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
-#chat-messages{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;}
-.bot-msg{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d;padding:10px 14px;border-radius:14px 14px 14px 0;font-size:14px;max-width:85%;line-height:1.5;}
-.user-msg{background:#22c55e;color:white;padding:10px 14px;border-radius:14px 14px 0 14px;font-size:14px;max-width:85%;align-self:flex-end;}
-.thinking-msg{background:#f3f4f6;color:#6b7280;padding:10px 14px;border-radius:14px;font-size:13px;font-style:italic;}
-#chat-input-area{display:flex;padding:12px;border-top:1px solid #e5e7eb;gap:8px;}
-#chat-input{flex:1;padding:10px 14px;border:1px solid #d1d5db;border-radius:20px;font-size:14px;outline:none;}
-#chat-input:focus{border-color:#22c55e;}
-#chat-input-area button{background:#22c55e;color:white;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:15px;margin-top:0;padding:0;display:flex;align-items:center;justify-content:center;}
-</style>
+    <!-- FOOTER -->
 
-<script>
-function toggleChat(){
-    document.getElementById('chat-window').classList.toggle('open');
-}
-async function sendMessage(){
-    const input=document.getElementById('chat-input');
-    const messages=document.getElementById('chat-messages');
-    const userText=input.value.trim();
-    if(!userText) return;
-    messages.innerHTML+=`<div class="user-msg">${userText}</div>`;
-    input.value='';
-    messages.innerHTML+=`<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
-    messages.scrollTop=messages.scrollHeight;
-    try{
-        const response=await fetch('http://127.0.0.1:8000/api/chatbot/',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({message:userText})
+    <footer class="footer">
+
+        <!-- CENTER TAGLINE -->
+        <div class="footer-center">
+            <h2>TripWise</h2>
+            <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
+        </div>
+        <br>
+        <br>
+        <hr style="border-color:#1c6b3a; margin:20px 0;">
+        <br>
+        <!-- BOTTOM ROW -->
+        <div class="footer-bottom">
+
+            <!-- LEFT -->
+            <div class="footer-left">
+                <a href="aboutus.html">
+                    <i class="fa-solid fa-circle-info"></i> About Us
+                </a>
+
+                <a href="contact.html">
+                    <i class="fa-solid fa-phone"></i> Contact Us
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
+                </a>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="footer-right">
+                © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+            </div>
+
+        </div>
+
+    </footer>
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,  // animation speed
+            once: true       // animate only once
         });
-        const data=await response.json();
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">${data.reply}</div>`;
-    }catch(error){
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">⚠️ Could not connect.?</div>`;
-    }
-    messages.scrollTop=messages.scrollHeight;
-}
-</script>
-<script src="js/script.js"></script>
+    </script>
+    <!-- TRIPWISE AI CHAT BUBBLE -->
+    <div id="chat-bubble" onclick="toggleChat()">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div id="chat-window">
+        <div id="chat-header">
+            <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
+            <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+        </div>
+        <div id="chat-messages">
+            <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask something..."
+                onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <style>
+        #chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.5);
+            z-index: 9999;
+            transition: transform 0.3s;
+        }
+
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-window {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 340px;
+            height: 460px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            z-index: 9998;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #chat-window.open {
+            display: flex;
+        }
+
+        #chat-header {
+            background: #14532d;
+            color: white;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bot-msg {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            padding: 10px 14px;
+            border-radius: 14px 14px 14px 0;
+            font-size: 14px;
+            max-width: 85%;
+            line-height: 1.5;
+        }
+
+        .user-msg {
+            background: #22c55e;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 14px 14px 0 14px;
+            font-size: 14px;
+            max-width: 85%;
+            align-self: flex-end;
+        }
+
+        .thinking-msg {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        #chat-input-area {
+            display: flex;
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            gap: 8px;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #chat-input:focus {
+            border-color: #22c55e;
+        }
+
+        #chat-input-area button {
+            background: #22c55e;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        function toggleChat() {
+            document.getElementById('chat-window').classList.toggle('open');
+        }
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const userText = input.value.trim();
+            if (!userText) return;
+            messages.innerHTML += `<div class="user-msg">${userText}</div>`;
+            input.value = '';
+            messages.innerHTML += `<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
+            messages.scrollTop = messages.scrollHeight;
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/chatbot/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userText })
+                });
+                const data = await response.json();
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">${data.reply}</div>`;
+            } catch (error) {
+                document.getElementById('thinking').remove();
+                messages.innerHTML += `<div class="bot-msg">⚠️ Could not connect.?</div>`;
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>
-
-

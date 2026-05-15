@@ -1,7 +1,7 @@
 # TripWise – Split Your Expenses Wisely
 
 TripWise Logo:
-<p align="center">
+<p>
   <img src="image/logo.png" alt="TripWise Logo" width="150">
 </p>
 
