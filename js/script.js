@@ -683,7 +683,6 @@
 
 const API_BASE_URL = "https://tripwise-backend-1.onrender.com";
 
-
 // Select elements
 const navExpenses = document.getElementById('navExpenses');
 const navSummary = document.getElementById('navSummary');
