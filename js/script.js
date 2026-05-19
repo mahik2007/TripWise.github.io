@@ -1088,36 +1088,78 @@ document.addEventListener('DOMContentLoaded', () => {
 // });
 
 
-function generateMemberInputs(numMembers) {
-    memberNamesContainer.innerHTML = ''; // Clear existing inputs
+// function generateMemberInputs(numMembers) {
+//     memberNamesContainer.innerHTML = ''; // Clear existing inputs
     
+//     for (let i = 1; i <= numMembers; i++) {
+//         const memberDiv = document.createElement('div');
+//         memberDiv.className = 'member-input-group';
+//         memberDiv.style.marginBottom = '12px';
+        
+//         const label = document.createElement('label');
+//         label.textContent = `Member Name ${i}:`;
+//         label.style.fontWeight = '600';
+//         label.style.marginBottom = '4px';
+//         label.style.display = 'block';
+        
+//         const input = document.createElement('input');
+//         input.type = 'text';
+//         input.name = `member${i}`;
+//         input.id = `member${i}`;
+//         input.placeholder = `Enter name of member ${i}`;
+//         input.className = 'form-input member-name';
+//         input.required = true;
+//         input.style.width = '100%';
+//         input.style.padding = '10px';
+//         input.style.border = '1px solid #ddd';
+//         input.style.borderRadius = '6px';
+        
+//         memberDiv.appendChild(label);
+//         memberDiv.appendChild(input);
+//         memberNamesContainer.appendChild(memberDiv);
+//     }
+// } khushi
+
+function generateMemberInputs(numMembers) {
+
+    const container =
+        document.getElementById('memberNamesContainer');
+
+    // Clear old inputs
+    container.innerHTML = '';
+
+    // Create inputs dynamically
     for (let i = 1; i <= numMembers; i++) {
-        const memberDiv = document.createElement('div');
-        memberDiv.className = 'member-input-group';
-        memberDiv.style.marginBottom = '12px';
-        
-        const label = document.createElement('label');
-        label.textContent = `Member Name ${i}:`;
-        label.style.fontWeight = '600';
-        label.style.marginBottom = '4px';
-        label.style.display = 'block';
-        
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = `member${i}`;
-        input.id = `member${i}`;
-        input.placeholder = `Enter name of member ${i}`;
-        input.className = 'form-input member-name';
-        input.required = true;
-        input.style.width = '100%';
-        input.style.padding = '10px';
-        input.style.border = '1px solid #ddd';
-        input.style.borderRadius = '6px';
-        
-        memberDiv.appendChild(label);
-        memberDiv.appendChild(input);
-        memberNamesContainer.appendChild(memberDiv);
+
+        const card =
+            document.createElement('div');
+
+        card.className = 'card';
+
+        card.innerHTML = `
+
+            <div class="card-left">
+
+                <i class="fa-solid fa-user-circle"></i>
+
+                <span>
+                    Member ${i}
+                </span>
+
+            </div>
+
+            <input
+                type="text"
+                class="member-name"
+                placeholder="Enter member name"
+            >
+
+        `;
+
+        container.appendChild(card);
+
     }
+
 }
 
 // Show Expenses page by default
@@ -1136,15 +1178,38 @@ function showSummaryPage() {
 }
 
 // Navigation event handlers
-navExpenses.addEventListener('click', (e) => {
-    e.preventDefault();
-    showExpensesPage();
-});
+// navExpenses.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     showExpensesPage();
+// });
 
-navSummary.addEventListener('click', (e) => {
-    e.preventDefault();
-    showSummaryPage();
-});
+// navSummary.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     showSummaryPage();
+// });khushi
+if (navExpenses) {
+
+    navExpenses.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+        showExpensesPage();
+
+    });
+
+}
+
+if (navSummary) {
+
+    navSummary.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+        showSummaryPage();
+
+    });
+
+}
 
 // Expense form submit handler
 expenseForm.addEventListener('submit', (e) => {
