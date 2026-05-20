@@ -909,9 +909,9 @@ expenseForm.addEventListener('submit', (e) => {
     if (memberNames.length >= 3) {
         debtList.appendChild(createDebtItem(memberNames[2], memberNames[0], 300));
     }
-    if (memberNames.length >= 4) {
-        debtList.appendChild(createDebtItem(memberNames[3], memberNames[1], 200));
-    }
+    // if (memberNames.length >= 4) {
+    //     debtList.appendChild(createDebtItem(memberNames[3], memberNames[1], 200));
+    // }
 
     // Switch to summary page
     showSummaryPage();
