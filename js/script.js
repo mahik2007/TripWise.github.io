@@ -678,7 +678,18 @@
     },
   ]);
   // Navigate to add-expense.html
-    window.location.href = 'add-expense.html';
+    const numMembers = document.getElementById('numMembers').value;
+  
+  const tripData = {
+    members: numMembers
+  };
+  
+  localStorage.setItem('tripData', JSON.stringify(tripData));
+  
+  // Now navigate
+  window.location.href = 'add-expense.html';
+
+    
 });
 
 const API_BASE_URL = "https://tripwise-backend-1.onrender.com";
@@ -712,22 +723,37 @@ const expenseTypes = [
 ];
 
 // Load trip data and generate member inputs on page load
+
 document.addEventListener('DOMContentLoaded', () => {
+    const rawData = localStorage.getItem('tripData');
+    console.log('Stored Trip Data:', rawData); // Debug
 
-    const tripData = JSON.parse(
-        localStorage.getItem('tripData') || '{}'
-    );
-
-    const numMembers =
-        parseInt(tripData.members) || 0;
+    const tripData = JSON.parse(rawData || '{}');
+    const numMembers = parseInt(tripData.members) || 0;
 
     if (numMembers > 0) {
-
         generateMemberInputs(numMembers);
-
+    } else {
+        console.error('No members found in tripData');
     }
-
 });
+
+// document.addEventListener('DOMContentLoaded', () => {
+
+//     const tripData = JSON.parse(
+//         localStorage.getItem('tripData') || '{}'
+//     );
+
+//     const numMembers =
+//         parseInt(tripData.members) || 0;
+
+//     if (numMembers > 0) {
+
+//         generateMemberInputs(numMembers);
+
+//     }
+
+// });
 
 //     generateMemberInputs(numMembers);
 
