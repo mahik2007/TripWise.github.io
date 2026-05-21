@@ -678,14 +678,35 @@
     },
   ]);
   // Navigate to add-expense.html
-    const numMembers = document.getElementById('numMembers').value;
-  
-  const tripData = {
-    members: numMembers
-  };
-  
-  localStorage.setItem('tripData', JSON.stringify(tripData));
-  
+document.getElementById('yourButtonId').addEventListener('click', () => {
+    const numMembers = parseInt(document.getElementById('numMembers').value) || 0;
+
+    if (numMembers > 0) {
+        const tripData = { members: numMembers };
+        localStorage.setItem('tripData', JSON.stringify(tripData));
+        window.location.href = 'add-expense.html'; // navigate only after saving
+    } else {
+        alert("Please enter number of members!");
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const rawData = localStorage.getItem('tripData');
+    if (!rawData) {
+        console.error("No tripData found in localStorage");
+        return;
+    }
+
+    const tripData = JSON.parse(rawData);
+    const numMembers = parseInt(tripData.members) || 0;
+
+    if (numMembers > 0) {
+        generateMemberInputs(numMembers);
+    } else {
+        console.error("Invalid number of members in tripData");
+    }
+});
+
   // Now navigate
   window.location.href = 'add-expense.html';
 
